@@ -1,0 +1,15 @@
+*,*::after,*::before{
+    padding: 0;
+    margin:0;
+    box-sizing: inherit;
+    scrollbar-highlight-color: none;
+    -webkit-tap-highlight-color: none;
+}
+
+*:focus{
+    outline: none;
+}
+
+html,body{
+    box-sizing: border-box;
+}
