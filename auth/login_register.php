@@ -1,7 +1,8 @@
  <?php
  
-     include '../database/database.php';
-     $conn=dbConnection();
+
+     ob_start();
+     require '../database/database.php';
      session_start();
      $errors_array=array();
      if($conn)
@@ -18,7 +19,7 @@
             $_SESSION['reg_username']=$reg_username;
             $_SESSION['reg_email']=$reg_email;
             if($reg_password!==$confPassword){
-                array_push($errors_array,'Password And Confirm Password Not Match!');
+                array_push($errors_array,'پسورد و تایید  پسورد مشابه هم نمی باشد');
             }
             if(!preg_match('/^(?=.*[!@#$%^&*-])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/',$reg_password)){
                 array_push($errors_array,'  پسورد باید حداقل ۸ حرف لاتین شامل حداقل یک  حرف بزرگ و حداقل یک حرف خاص باشد ');
@@ -64,6 +65,8 @@
     else{
         array_push($errors_array,'مشکل در برقراری ارتباط با سرور');
     }
+
+    ob_end_clean();
             
  ?>
 <!DOCTYPE html>
@@ -103,3 +106,4 @@
     </form>
 </body>
 </html>
+
