@@ -1,14 +1,12 @@
 <?php
 
-    $conn=mysqli_connect('localhost','root','_Am13ir75@','social_media');
+    function dbConnection(){
 
-    if(mysqli_connect_errno()){
+        $conn=mysqli_connect('localhost','root','_Am13ir75@','social_media');
 
-        echo 'can\'t connect to database:'.mysqli_connect_errno();
+        return $conn;
 
     }
-    else{
-        echo 'connected to database';
-    }
-
+    
+    
  ?>
