@@ -1,5 +1,5 @@
 <?php 
-      if(isset($_POST['reg_username'])&&isset($_POST['reg_email'])&&isset($_POST['reg_password'])&&isset($_POST['conf_password'])){
+      if(isset($_POST['register']) && isset($_POST['reg_username'])&&isset($_POST['reg_email'])&&isset($_POST['reg_password'])&&isset($_POST['conf_password'])){
              
             
         $reg_username=str_replace(' ','',strip_tags($_POST['reg_username']));

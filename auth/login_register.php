@@ -1,6 +1,4 @@
  <?php
- 
-
      ob_start();
      require '../database/database.php';
      session_start();
@@ -8,6 +6,7 @@
      if($conn)
      {
         require './register_handler.php';
+        require './login_handler.php';
        
      }
      else{
@@ -27,7 +26,25 @@
 </head>
 <body>
     
-<form action="./login_register.php" method="POST">
+
+ <form action="login_register.php" method="POST">
+     <?php if(in_array('کاربر یافت نشد',$errors_array))  echo 'کاربر یافت نشد';?>
+
+     <input type="text" required placeholder="email or username" value="<?php
+
+        if(isset($_SESSION['login_user'])) echo $_SESSION['user_username'];
+      ?>" name="login_user">
+
+     <br>
+     <input type="password" required placeholder="password" name="login_password">
+     <br>
+     <label>remember me</label>
+     <input type="checkbox" name="remember_me">
+     <br>
+     <input type="submit" value="login" name="login">
+ </form> 
+
+<form action="login_register.php" method="POST">
         <?php
             if(count($errors_array)>0){
                 for($index=0;$index<count($errors_array);$index++){
@@ -50,7 +67,7 @@
         <label>female</label>
         <input type="radio" name="gender" value="female">
         <br>
-        <input type="submit" value="send">
+        <input type="submit" name="register" value="register">
     </form>
 </body>
 </html>
