@@ -1,0 +1,25 @@
+*, *::after, *::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+  scrollbar-highlight-color: none;
+  -webkit-tap-highlight-color: none; }
+
+*:focus {
+  outline: none; }
+
+html, body {
+  box-sizing: border-box;
+  font-size: 62.5%; }
+
+.loginRegister-container {
+  height: 100vh;
+  background-image: url("../img/login_register-background.jpg");
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .loginRegister-container-main {
+    font-size: 1.6rem; }
