@@ -1,4 +1,5 @@
 @import './basics';
+@import './variable';
 
 .loginRegister-container{
     height: 100vh;
@@ -10,7 +11,147 @@
     justify-content: center;
     align-items: center;
 
-    &-main{
+    &-box{
         font-size: 1.6rem;
+        background-color: rgba($color: $color-gray-light, $alpha: .8);
+        border-radius: 5px;
+        color: $color-black-dark;
+        border: 3px solid $color-black-dark;
+        flex-basis: 30%;
+        overflow: auto;
+        
+        &_header{
+            padding: 1rem 0;
+            text-align: center;
+            background-color: $color-primary;
+            color: white;
+            & h3{
+                font-size: 2rem;
+                font-weight: bold;
+                text-shadow: $color-primary-dark 3px 3px 3px;
+            }
+        }
+        &_loginForm,&_registerForm{
+            padding: 0rem .5rem;
+            & input[type="text"],& input[type="password"],& input[type="email"]{
+                width: 100%;
+                display: block;
+                border: none;
+                border: 2px solid $color-gray-dark;
+                font-family:Arial,sans-serif;
+                border-radius: 5px;
+                font-size: 1.6rem;
+                margin: 2rem 0;
+                padding: .5rem .5rem;
+                &:hover{
+                    border-color: $color-primary;
+                }
+                &::placeholder{
+                    font-family: B-nazanin;
+                }
+            }
+            & input[type='submit']{
+                display: block;
+                background-color: $color-primary;
+                border: none;
+                font-weight: bold;
+                text-shadow: $color-primary-dark 3px 3px 3px;
+                padding: 1rem;
+                font-size: 1.6rem;
+                cursor: pointer;
+                margin: 2rem 0;
+                width: 100%;
+                border-radius: 5px;
+                color: white;
+            }
+
+            
+   
+        }
+        &_loginForm{
+            &_remember{
+                display: flex;
+                align-items: center;
+                margin-right: 0.5rem;
+                input{
+                    appearance: none;
+                    margin-right: 5px;;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    position: relative;
+                    overflow: hidden;
+                    &::before{
+                        display: block;
+                        content: '';
+                        width: 20px;
+                        height: 18px;
+                        border: 2px solid $color-primary;
+
+                    }
+                    &::after{
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        background-color: transparent;
+                        box-shadow: 4px 4px 0px 0px $color-primary-light;
+                        transform-origin: 50% 50%;
+                        opacity: 0;
+                        transform: rotate(45deg) translate(-158%,-48%);
+                        transition: opacity .3s linear;
+                        width: 8px;
+                        height: 15px;
+
+                    }
+                    &:checked::after{
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        &_registerForm{
+            
+            &_gender{
+                display: inline-flex;
+                align-items: center;
+                margin-right: 0.5rem;
+                input{
+                    appearance: none;
+                    margin-right: 5px;;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    position: relative;
+                    overflow: hidden;
+                    &::before{
+                        display: block;
+                        content: '';
+                        width: 20px;
+                        height: 18px;
+                        border: 2px solid $color-primary;
+                        border-radius: 50%;
+
+                    }
+                    &::after{
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        left: 25%;
+                        top: 25%;
+                        background-color: $color-primary-light;
+                        opacity: 0;
+                        border-radius: 50%;
+                        transition: opacity .3s linear;
+                        width: 10px;
+                        height: 8px;
+
+                    }
+                    &:checked::after{
+                        opacity: 1;
+                    }
+                }
+
+            }
+        }
     }
 }

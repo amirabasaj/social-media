@@ -1,6 +1,11 @@
+@font-face{
+    font-family: B-nazanin;
+    src: url('../fonts/B-Nazanin.ttf');
+}
 *,*::after,*::before{
     padding: 0;
     margin:0;
+    color: inherit;
     box-sizing: inherit;
     scrollbar-highlight-color: none;
     -webkit-tap-highlight-color: none;
@@ -13,4 +18,7 @@
 html,body{
     box-sizing: border-box;
     font-size: 62.5%;
+    font-family: B-nazanin,Arial, Helvetica, sans-serif;
+    direction: rtl;
 }
+

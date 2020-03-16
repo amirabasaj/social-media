@@ -28,53 +28,61 @@
     
 
 <div class="loginRegister-container">
-    <div class="loginRegister-container-main">
-            <form action="login_register.php" method="POST">
-                <?php if(in_array('کاربر یافت نشد',$errors_array))  echo 'کاربر یافت نشد';
-                      if(in_array('خطا در بر قراری ارتباط با سرور',$errors_array)) echo 'خطا در بر قراری ارتباط با سرور';
-                ?>
+    <div class="loginRegister-container-box">
+        <div class="loginRegister-container-box_header">
+            <h3>شبکه اجتماعی</h3>
+        </div>       
+        <form action="login_register.php" class="loginRegister-container-box_loginForm" method="POST">
+            <?php if(in_array('کاربر یافت نشد',$errors_array))  echo 'کاربر یافت نشد';
+                  if(in_array('خطا در بر قراری ارتباط با سرور',$errors_array)) echo'خطا در بر قراری ارتباط با سرور';
+            ?>
+            <input type="text" required placeholder="نام کاربری یا ایمیل" value="<?php
+               if(isset($_SESSION['login_user'])) echo $_SESSION['user_username'];
+             ?>" name="login_user">
 
-                <input type="text" required placeholder="email or username" value="<?php
+            <input type="password" required placeholder="رمز عبور"name="login_password">
 
-                   if(isset($_SESSION['login_user'])) echo $_SESSION['user_username'];
-                 ?>" name="login_user">
+            <label for="rememberMe" class="loginRegister-container-box_loginForm_remember">            <span>مرا بخاطر بسپار</span>
+            <input type="checkbox" name="remember_me" id="rememberMe">
 
-                <br>
-                <input type="password" required placeholder="password" name="login_password">
-                <br>
-                <label>remember me</label>
-                <input type="checkbox" name="remember_me">
-                <br>
-                <input type="submit" value="login" name="login">
-            </form> 
+            </label>
 
-            <form action="login_register.php" method="POST">
-                <?php
-                    if(count($errors_array)>0){
-                        for($index=0;$index<count($errors_array);$index++){
-                            echo $errors_array[$index].'<br>';
-                        }
+
+            <input type="submit" value="ورود" name="login">
+        </form> 
+
+        <form action="login_register.php" class="loginRegister-container-box_registerForm" method="POST">
+            <?php
+                if(count($errors_array)>0){
+                    for($index=0;$index<count($errors_array);$index++){
+                        echo $errors_array[$index].'<br>';
                     }
-                 ?>
-                <input type="text" placeholder="username" name="reg_username" value="<?php
-                if($_SESSION['reg_username']) echo $_SESSION['reg_username']; ?>" required>
-                <br>
-                <input type="email" placeholder="email" name="reg_email" value="<?php
-                if($_SESSION['reg_email']) echo $_SESSION['reg_email']; ?>" required>
-                <br>
-                <input type="password" placeholder="password" name="reg_password" required>
-                <br>
-                <input type="password" placeholder="confirm password" name="conf_password"      required>
-                <br>
-                <label>male</label>
+                }
+             ?>
+            <input type="text" placeholder="نام کاربری" name="reg_username" value="<?php
+            if($_SESSION['reg_username']) echo $_SESSION['reg_username']; ?>"required>
+
+            <input type="email" placeholder="ایمیل" name="reg_email" value="<?php
+            if($_SESSION['reg_email']) echo $_SESSION['reg_email']; ?>" required>
+
+            <input type="password" placeholder="رمز عبور" name="reg_password"required>
+
+            <input type="password" placeholder="تکرار رمز عبور "name="conf_password"      required>
+
+            <label for="male-gender" class="loginRegister-container-box_registerForm_gender">
+                <span>مرد</span>
                 <input type="radio" name="gender" checked value="male">
-                <label>female</label>
+            </label>
+
+            <label for="female-gender" class="loginRegister-container-box_registerForm_gender">
+                <span>زن</span>
                 <input type="radio" name="gender" value="female">
-                <br>
-                <input type="submit" name="register" value="register">
-            </form>
-        </div>
+            </label>
+
+            <input type="submit" name="register" value="ثبت نام">
+        </form>
     </div>
+</div>
 </body>
 </html>
 
