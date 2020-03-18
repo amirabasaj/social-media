@@ -1,4 +1,4 @@
 <?php 
 session_start();
-echo "hello ".$_SESSION['user_username'];
+echo "hello ".$_SESSION['login_username'];
 ?>

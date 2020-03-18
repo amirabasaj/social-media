@@ -4,13 +4,15 @@ const registerFormBtn=document.querySelector('.loginRegister-container-box_regis
 
 const loadingBox=document.querySelector('.loader');
 
+const errorBoxParagraph=document.querySelector('.loginRegister-container-box_loginForm_errorBox p')
+
 const registerForm=document.querySelector('.loginRegister-container-box_registerForm');
 const loginForm=document.querySelector('.loginRegister-container-box_loginForm');
 let registerFormHeight=registerForm.offsetHeight;
 let loginFormHeight=loginForm.offsetHeight;
 
-loginForm.style.height=loginFormHeight+'px';
-registerForm.style.height=0+'px';
+registerForm.style.height=registerFormHeight+'px';
+loginForm.style.height=0+'px';
 
 
 loginFormBtn.addEventListener('click',()=>{
@@ -75,15 +77,23 @@ loginForm.addEventListener('submit',function(e){
 
    xmlhttp.onreadystatechange = function() {
 
-     window.setTimeout(()=>{
+
+       window.setTimeout(()=>{
 
         loadingBox.classList.remove('loader--active');
+        if (this.readyState == 4 && this.status == 200) {
+          const response=JSON.parse(this.responseText);
+          if(response.success==="YES"){
+            console.log(location.hostname+':'+location.port+'/home.php');
+            location.replace('http://'+location.hostname+':'+location.port+'/home.php');
+          }
+          else{
+            errorBoxParagraph.parentElement.classList.add('loginRegister-container-box_loginForm_errorBox--active')
+             errorBoxParagraph.textContent=response.error;
+          }
+        }
 
      },1000);
-
-       if (this.readyState == 4 && this.status == 200) {
-         console.log(JSON.parse(this.responseText));
-       }
    };
 
    xmlhttp.open("POST", "../../auth/login_handler.php");

@@ -10,25 +10,31 @@
         $_SESSION['reg_username']=$reg_username;
         $_SESSION['reg_email']=$reg_email;
         if($reg_password!==$confPassword){
-            array_push($errors_array,'پسورد و تایید  پسورد مشابه هم نمی باشد');
+            array_push($errors_array,'پسورد و تایید  پسورد مشابه هم نمی باشد.');
         }
         if(!preg_match('/^(?=.*[!@#$%^&*-])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/',$reg_password)){
-            array_push($errors_array,'  پسورد باید حداقل ۸ حرف لاتین شامل حداقل یک  حرف بزرگ و حداقل یک حرف خاص باشد ');
+            array_push($errors_array,'  پسورد باید حداقل ۸ حرف لاتین شامل حداقل یک  حرف. بزرگ و حداقل یک حرف خاص باشد. ');
         }
         if(filter_var($reg_email,FILTER_VALIDATE_EMAIL)){
             $checkEmailResult=mysqli_query($conn,"SELECT email FROM Users WHERE emial='$reg_email'");
             
             if(mysqli_num_rows($checkEmailResult)>0){
-                array_push($errors_array,'ایمیل قبلا ثبت شده ');
+                array_push($errors_array,'ایمیل قبلا ثبت شده.');
             }
         }
         else{
-           array_push($errors_array,'فرمت ایمیل صحیح نمی باشد');
+           array_push($errors_array,'فرمت ایمیل صحیح نمی باشد.');
         }
 
         $checkUsernameResult=mysqli_query($conn,"SELECT username FROM Users WHERE username='$reg_username'");
         if(mysqli_num_rows($checkUsernameResult)>0){
-            array_push($errors_array,'نام کاربری وجود دارد');
+            array_push($errors_array,'نام کاربری وجود دارد.');
+        }
+
+        $checkEmailResult=mysqli_query($conn,"SELECT email FROM Users WHERE email='$reg_email'");
+        
+        if(mysqli_num_rows($checkEmailResult)>0){
+            array_push($errors_array,'آدرس ایمیل وجود دارد.');
         }
         
         if(count($errors_array)==0){
@@ -45,7 +51,7 @@
             }
 
             $res=mysqli_query($conn,"INSERT INTO Users (username, email, password,profile_pic, signup_date, gender) VALUES('$reg_username','$reg_email','$reg_password','$userPic','$date','$gender')");
-            if($res!=TRUE) array_push( $errors_array,'مشکل در ثبت کاربر جدید');
+            if($res!=TRUE) array_push( $errors_array,'مشکل در ثبت کاربر جدید.');
             else{
                 $_SESSION['reg_username']='';
                 $_SESSION['reg_email']='';

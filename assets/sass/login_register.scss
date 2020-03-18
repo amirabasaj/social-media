@@ -68,7 +68,8 @@
                 font-family:Arial,sans-serif;
                 border-radius: 5px;
                 font-size: 1.6rem;
-                margin: 2rem 0;
+                margin-top: 1rem;
+                margin-bottom: 2rem;
                 padding: .5rem .5rem;
                 &:hover{
                     border-color: $color-primary;
@@ -81,6 +82,10 @@
                 display: block;
                 background-color: $color-primary;
                 border: none;
+                transition: transform 0.1s linear;
+                &:hover{
+                    transform: scale(1.01);
+                }
                 font-weight: bold;
                 text-shadow: $color-primary-dark 3px 3px 3px;
                 padding: 1rem;
@@ -96,6 +101,18 @@
    
         }
         &_loginForm{
+            &_errorBox{
+                border-radius: 5px;
+                padding: 1rem 0.5rem;
+                font-size: 1.6rem;
+                visibility: hidden;
+                color: $color-black;
+                margin: 1rem 0;
+                background-color: $color-red-primary-light;
+                &--active{
+                    visibility: visible;
+                }
+            }
             &_remember{
                 display: flex;
                 align-items: center;
@@ -142,9 +159,24 @@
                 cursor: pointer;
                 text-align: center;
                 font-weight: bold;
+                transition: transform 0.1s linear;
+                &:hover{
+                    transform: scale(1.1);
+                }
             }
         }
         &_registerForm{
+            &_errorBox{
+                border-radius: 5px;
+                padding: 1rem 0.5rem;
+                font-size: 1.6rem;
+                color: $color-black;
+                margin: 1rem 0;
+                background-color: $color-red-primary-light;
+                & p{
+                    margin-bottom: .5rem;
+                }
+            }
             &_gender{
                 display: inline-flex;
                 align-items: center;
@@ -170,7 +202,7 @@
                         display: block;
                         position: absolute;
                         left: 25%;
-                        top: 25%;
+                        top: 28%;
                         background-color: $color-primary-light;
                         opacity: 0;
                         border-radius: 50%;
@@ -192,6 +224,10 @@
                 font-weight: bold;
                 text-align: center;
                 margin-bottom: 10px;
+                transition: transform 0.1s linear;
+                &:hover{
+                    transform: scale(1.1);
+                }
             }
         }
     }

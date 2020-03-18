@@ -37,9 +37,9 @@
 
         <div class="loginRegister-container-box_loginForm">
             <form action="login_handler.php" method="POST">
-                <?php if(in_array('کاربر یافت نشد',$errors_array))  echo 'کاربر یافت نشد';
-                    if(in_array('خطا در بر قراری ارتباط با سرور',$errors_array)) echo'خطا در بر قراری ارتباط با سرور';
-                ?>
+                <div class="loginRegister-container-box_loginForm_errorBox">
+                <p>اروری وجود ندارد</p>
+                </div>
                 <input type="text" required placeholder="نام کاربری یا ایمیل" name="login_user">
 
                 <input type="password" required placeholder="رمز عبور"name="login_password">
@@ -59,11 +59,16 @@
             <form action="login_register.php" method="POST">
                 <?php
                     if(count($errors_array)>0){
+                ?>
+                        <div class="loginRegister-container-box_registerForm_errorBox">
+                <?php
                         for($index=0;$index<count($errors_array);$index++){
-                            echo $errors_array[$index].'<br>';
+                            echo '<p>'.($index+1).'- '.$errors_array[$index].'</p>';
                         }
-                    }
-                 ?>
+                ?>
+                        </div>
+                <?php } ?>
+
                 <input type="text" placeholder="نام کاربری" name="reg_username" value="<?php
                 if($_SESSION['reg_username']) echo $_SESSION['reg_username']; ?>"required>
     
