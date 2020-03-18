@@ -6,14 +6,12 @@
      if($conn)
      {
         require './register_handler.php';
-        require './login_handler.php';
        
      }
      else{
         array_push($errors_array,'مشکل در برقراری ارتباط با سرور');
     }
 
-    ob_end_clean();
             
  ?>
 <!DOCTYPE html>
@@ -25,64 +23,74 @@
     <link rel="stylesheet" href="../assets/css/login_register.css">
 </head>
 <body>
-    
+
+<div class="loader">
+    <img src="../assets/img/loading.gif">
+    <p>لطفا صبر کنید..</p>
+</div>    
 
 <div class="loginRegister-container">
     <div class="loginRegister-container-box">
         <div class="loginRegister-container-box_header">
             <h3>شبکه اجتماعی</h3>
-        </div>       
-        <form action="login_register.php" class="loginRegister-container-box_loginForm" method="POST">
-            <?php if(in_array('کاربر یافت نشد',$errors_array))  echo 'کاربر یافت نشد';
-                  if(in_array('خطا در بر قراری ارتباط با سرور',$errors_array)) echo'خطا در بر قراری ارتباط با سرور';
-            ?>
-            <input type="text" required placeholder="نام کاربری یا ایمیل" value="<?php
-               if(isset($_SESSION['login_user'])) echo $_SESSION['user_username'];
-             ?>" name="login_user">
+        </div>
 
-            <input type="password" required placeholder="رمز عبور"name="login_password">
+        <div class="loginRegister-container-box_loginForm">
+            <form action="login_handler.php" method="POST">
+                <?php if(in_array('کاربر یافت نشد',$errors_array))  echo 'کاربر یافت نشد';
+                    if(in_array('خطا در بر قراری ارتباط با سرور',$errors_array)) echo'خطا در بر قراری ارتباط با سرور';
+                ?>
+                <input type="text" required placeholder="نام کاربری یا ایمیل" name="login_user">
 
-            <label for="rememberMe" class="loginRegister-container-box_loginForm_remember">            <span>مرا بخاطر بسپار</span>
-            <input type="checkbox" name="remember_me" id="rememberMe">
+                <input type="password" required placeholder="رمز عبور"name="login_password">
 
-            </label>
+                <label for="rememberMe" class="loginRegister-container-box_loginForm_remember">            <span>مرا بخاطر بسپار</span>
+                <input type="checkbox" name="remember_me" id="rememberMe">
+
+                </label>
 
 
-            <input type="submit" value="ورود" name="login">
-        </form> 
+                <input type="submit" value="ورود" name="login">
+            </form> 
+            <a class="loginRegister-container-box_loginForm_registerLink">اکانت ندارید؟ثبت نام کنید</a>
+        </div>   
 
-        <form action="login_register.php" class="loginRegister-container-box_registerForm" method="POST">
-            <?php
-                if(count($errors_array)>0){
-                    for($index=0;$index<count($errors_array);$index++){
-                        echo $errors_array[$index].'<br>';
+        <div class="loginRegister-container-box_registerForm">
+            <form action="login_register.php" method="POST">
+                <?php
+                    if(count($errors_array)>0){
+                        for($index=0;$index<count($errors_array);$index++){
+                            echo $errors_array[$index].'<br>';
+                        }
                     }
-                }
-             ?>
-            <input type="text" placeholder="نام کاربری" name="reg_username" value="<?php
-            if($_SESSION['reg_username']) echo $_SESSION['reg_username']; ?>"required>
-
-            <input type="email" placeholder="ایمیل" name="reg_email" value="<?php
-            if($_SESSION['reg_email']) echo $_SESSION['reg_email']; ?>" required>
-
-            <input type="password" placeholder="رمز عبور" name="reg_password"required>
-
-            <input type="password" placeholder="تکرار رمز عبور "name="conf_password"      required>
-
-            <label for="male-gender" class="loginRegister-container-box_registerForm_gender">
-                <span>مرد</span>
-                <input type="radio" name="gender" checked value="male">
-            </label>
-
-            <label for="female-gender" class="loginRegister-container-box_registerForm_gender">
-                <span>زن</span>
-                <input type="radio" name="gender" value="female">
-            </label>
-
-            <input type="submit" name="register" value="ثبت نام">
-        </form>
+                 ?>
+                <input type="text" placeholder="نام کاربری" name="reg_username" value="<?php
+                if($_SESSION['reg_username']) echo $_SESSION['reg_username']; ?>"required>
+    
+                <input type="email" placeholder="ایمیل" name="reg_email" value="<?php
+                if($_SESSION['reg_email']) echo $_SESSION['reg_email']; ?>" required>
+    
+                <input type="password" placeholder="رمز عبور" name="reg_password"required>
+    
+                <input type="password" placeholder="تکرار رمز عبور "name="conf_password"      required>
+    
+                <label for="male-gender" class="loginRegister-container-box_registerForm_gender">
+                    <span>مرد</span>
+                    <input type="radio" name="gender" checked value="male">
+                </label>
+    
+                <label for="female-gender" class="loginRegister-container-box_registerForm_gender">
+                    <span>زن</span>
+                    <input type="radio" name="gender" value="female">
+                </label>
+    
+                <input type="submit" name="register" value="ثبت نام">
+            </form>
+            <a class="loginRegister-container-box_registerForm_loginLink">اکانت دارید؟وارد شوید</a>
+        </div>
     </div>
 </div>
+<script src="../assets/js/login_register.js"></script>
 </body>
 </html>
 
