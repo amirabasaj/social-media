@@ -6,6 +6,8 @@ const loadingBox=document.querySelector('.loader');
 
 const errorBoxParagraph=document.querySelector('.loginRegister-container-box_loginForm_errorBox p')
 
+const rememberMe=document.querySelector('#rememberMe');
+
 const registerForm=document.querySelector('.loginRegister-container-box_registerForm');
 const loginForm=document.querySelector('.loginRegister-container-box_loginForm');
 let registerFormHeight=registerForm.offsetHeight;
@@ -64,6 +66,16 @@ registerFormBtn.addEventListener('click',()=>{
   
 });
 
+rememberMe.addEventListener('click',()=>{
+
+  if(rememberMe.value=='0'){
+
+    rememberMe.setAttribute('value',1);
+  }
+  else{
+    rememberMe.setAttribute('value',0);
+  }
+});
 
 loginForm.addEventListener('submit',function(e){
 
@@ -96,8 +108,9 @@ loginForm.addEventListener('submit',function(e){
      },1000);
    };
 
+   console.log(rememberMe.value);
    xmlhttp.open("POST", "../../auth/login_handler.php");
    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-   xmlhttp.send(JSON.stringify({"login_username":usernameField,"login_password" : passwordField}));
+   xmlhttp.send(JSON.stringify({"login_username":usernameField,"login_password" : passwordField,rememberMe:rememberMe.value}));
    
 });

@@ -45,7 +45,7 @@
                 <input type="password" required placeholder="رمز عبور"name="login_password">
 
                 <label for="rememberMe" class="loginRegister-container-box_loginForm_remember">            <span>مرا بخاطر بسپار</span>
-                <input type="checkbox" name="remember_me" id="rememberMe">
+                <input type="checkbox" name="remember_me" id="rememberMe" value="0">
 
                 </label>
 

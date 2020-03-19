@@ -41,7 +41,7 @@ html, body {
     color: white; }
 
 .loginRegister-container {
-  height: 100vh;
+  min-height: 100vh;
   background-image: url("../img/login_register-background.jpg");
   background-size: cover;
   background-position: bottom;
@@ -209,3 +209,13 @@ html, body {
     height: 0px; }
   100% {
     height: var(--formHeight); } }
+
+@media (max-width: 768px) {
+  .loginRegister-container {
+    padding: 1rem 0; }
+    .loginRegister-container-box {
+      flex-basis: 90%; } }
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .loginRegister-container-box {
+    flex-basis: 60%; } }
