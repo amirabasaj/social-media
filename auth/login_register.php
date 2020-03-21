@@ -1,18 +1,9 @@
  <?php
      ob_start();
+     session_start(); 
      require '../database/database.php';
-     session_start();
-     $errors_array=array();
-     if($conn)
-     {
-        require './register_handler.php';
-       
-     }
-     else{
-        array_push($errors_array,'مشکل در برقراری ارتباط با سرور');
-    }
-
-            
+     require './checkAuth_handler.php';
+               
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,24 +47,24 @@
         </div>   
 
         <div class="loginRegister-container-box_registerForm">
-            <form action="login_register.php" method="POST">
+            <form action="register_handler.php" method="POST">
                 <?php
-                    if(count($errors_array)>0){
+                    if(isset($_SESSION['errors_array'])){
                 ?>
                         <div class="loginRegister-container-box_registerForm_errorBox">
                 <?php
-                        for($index=0;$index<count($errors_array);$index++){
-                            echo '<p>'.($index+1).'- '.$errors_array[$index].'</p>';
+                        for($index=0;$index<count($_SESSION['errors_array']);$index++){
+                            echo '<p>'.($index+1).'- '.$_SESSION['errors_array'][$index].'</p>';
                         }
                 ?>
                         </div>
                 <?php } ?>
 
                 <input type="text" placeholder="نام کاربری" name="reg_username" value="<?php
-                if($_SESSION['reg_username']) echo $_SESSION['reg_username']; ?>"required>
+                if(isset($_SESSION['reg_username'])) echo $_SESSION['reg_username']; ?>"required>
     
                 <input type="email" placeholder="ایمیل" name="reg_email" value="<?php
-                if($_SESSION['reg_email']) echo $_SESSION['reg_email']; ?>" required>
+                if(isset($_SESSION['reg_email'])) echo $_SESSION['reg_email']; ?>" required>
     
                 <input type="password" placeholder="رمز عبور" name="reg_password"required>
     

@@ -1,7 +1,7 @@
 <?php
 
     session_start();
-
+    $http=(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http");
 
     require '../database/database.php';
 
@@ -63,5 +63,8 @@
             $jsonResponse= array('success'=>'NO','error'=>'نام کاربری و رمزعبور نمیتواند خالی باشد');
         }
         echo json_encode($jsonResponse);
+    }
+    else{
+        header("Location:$http://$_SERVER[HTTP_HOST]/auth/login_register.php");
     }
  ?>

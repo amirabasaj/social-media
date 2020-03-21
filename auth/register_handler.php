@@ -1,6 +1,11 @@
 <?php 
+      session_start();
+      $http=(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http"); 
       if(isset($_POST['register']) && isset($_POST['reg_username'])&&isset($_POST['reg_email'])&&isset($_POST['reg_password'])&&isset($_POST['conf_password'])){
-             
+        
+        $errors_array=array();   
+        require '../database/database.php';   
+
             
         $reg_username=str_replace(' ','',strip_tags($_POST['reg_username']));
         $reg_email=str_replace(' ','',strip_tags($_POST['reg_email']));
@@ -16,9 +21,9 @@
             array_push($errors_array,'  پسورد باید حداقل ۸ حرف لاتین شامل حداقل یک  حرف. بزرگ و حداقل یک حرف خاص باشد. ');
         }
         if(filter_var($reg_email,FILTER_VALIDATE_EMAIL)){
-            $checkEmailResult=mysqli_query($conn,"SELECT email FROM Users WHERE emial='$reg_email'");
+            $checkEmailResult=mysqli_query($conn,"SELECT email FROM Users WHERE email='$reg_email'");
             
-            if(mysqli_num_rows($checkEmailResult)>0){
+            if(mysqli_num_rows($checkEmailResult)!=0){
                 array_push($errors_array,'ایمیل قبلا ثبت شده.');
             }
         }
@@ -55,7 +60,17 @@
             else{
                 $_SESSION['reg_username']='';
                 $_SESSION['reg_email']='';
+                $_SESSION['login_username']=$reg_username;
+                header("Location:$http://$_SERVER[HTTP_HOST]/home.php");
             }
         }
+        else{
+
+            $_SESSION['errors_array']=$errors_array;
+            header("Location:$http://$_SERVER[HTTP_HOST]/auth/login_register.php");
+        }
+    }
+    else{
+        header("Location:$http://$_SERVER[HTTP_HOST]/auth/login_register.php");
     }
 ?>
