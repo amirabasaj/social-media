@@ -29,14 +29,14 @@
             $remember_me=$data['rememberMe'];
             $login_password=md5($login_password);
 
-            $user=mysqli_query($conn,"SELECT * FROM Users WHERE (username='$login_user' AND password='$login_password') OR (email='$login_user' AND password='$login_password')");
+            $user=mysqli_query($conn,"SELECT * FROM users WHERE (username='$login_user' AND password='$login_password') OR (email='$login_user' AND password='$login_password')");
 
             if(mysqli_num_rows($user)==1){
                 $user=mysqli_fetch_array($user);
                 $user_username=$user['username'];
                 $user_email=$user['email'];
     
-                $res=mysqli_query($conn,"UPDATE Users SET online=1 WHERE username='$user_username'");
+                $res=mysqli_query($conn,"UPDATE users SET online=1 WHERE username='$user_username'");
                 
                 if($res){
                     if($remember_me=='1'){

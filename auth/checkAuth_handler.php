@@ -14,7 +14,7 @@
 
 if(isset($_COOKIE['remember_me'])){
     $user=decryptCookie($_COOKIE['remember_me']);
-    $res=mysqli_query($conn,"SELECT username,email FROM Users WHERE username='$user'");
+    $res=mysqli_query($conn,"SELECT username,email FROM users WHERE username='$user'");
     if(mysqli_num_rows($res)==1){
         $user=mysqli_fetch_array($res);
 

@@ -21,7 +21,7 @@
             array_push($errors_array,'  پسورد باید حداقل ۸ حرف لاتین شامل حداقل یک  حرف. بزرگ و حداقل یک حرف خاص باشد. ');
         }
         if(filter_var($reg_email,FILTER_VALIDATE_EMAIL)){
-            $checkEmailResult=mysqli_query($conn,"SELECT email FROM Users WHERE email='$reg_email'");
+            $checkEmailResult=mysqli_query($conn,"SELECT email FROM users WHERE email='$reg_email'");
             
             if(mysqli_num_rows($checkEmailResult)!=0){
                 array_push($errors_array,'ایمیل قبلا ثبت شده.');
@@ -31,12 +31,12 @@
            array_push($errors_array,'فرمت ایمیل صحیح نمی باشد.');
         }
 
-        $checkUsernameResult=mysqli_query($conn,"SELECT username FROM Users WHERE username='$reg_username'");
+        $checkUsernameResult=mysqli_query($conn,"SELECT username FROM users WHERE username='$reg_username'");
         if(mysqli_num_rows($checkUsernameResult)>0){
             array_push($errors_array,'نام کاربری وجود دارد.');
         }
 
-        $checkEmailResult=mysqli_query($conn,"SELECT email FROM Users WHERE email='$reg_email'");
+        $checkEmailResult=mysqli_query($conn,"SELECT email FROM users WHERE email='$reg_email'");
         
         if(mysqli_num_rows($checkEmailResult)>0){
             array_push($errors_array,'آدرس ایمیل وجود دارد.');
@@ -55,7 +55,7 @@
                 $gender=1;
             }
 
-            $res=mysqli_query($conn,"INSERT INTO Users (username, email, password,profile_pic, signup_date, gender) VALUES('$reg_username','$reg_email','$reg_password','$userPic','$date','$gender')");
+            $res=mysqli_query($conn,"INSERT INTO users (username, email, password,profile_pic, signup_date, gender) VALUES('$reg_username','$reg_email','$reg_password','$userPic','$date','$gender')");
             if($res!=TRUE) array_push( $errors_array,'مشکل در ثبت کاربر جدید.');
             else{
                 $_SESSION['reg_username']='';
