@@ -48,10 +48,10 @@
             $date=date('Y-m-d');
             if($gender=='male'){
                 $gender=0;
-                $userPic=$_SERVER['HTTP_HOST'].'/assets/img/user-male.jpg';
+                $userPic='/assets/img/user-male.jpg';
             }
             else{
-                $userPic=$_SERVER['HTTP_HOST'].'/assets/img/user-female.jpg';
+                $userPic='/assets/img/user-female.jpg';
                 $gender=1;
             }
 
