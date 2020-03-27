@@ -14,12 +14,31 @@
         <img src="<?php echo $userPic ?>">
     </div>
     <form class="header-searchbox">
-        <input type="text">
-        <button>
+        <div class="header-searchbox-content">
             
-        </button>
+            <input type="text" placeholder="جست و جو..">
+            <button class="header-searchbox-content_icon">
+                <i class="fa fa-search"></i>
+            </button>
+
+        </div>
     </form>
     <div class="header-operation">
 
+        <a href="home.php" class="header-operation_home">
+            <i class="fa fa-home fa-3x"></i>
+        </a>
+        <a href="home.php" class="header-operation_envelope">
+            <i class="fa fa-envelope fa-3x"></i>
+        </a>
+        <a href="home.php" class="header-operation_bell">
+            <i class="fa fa-bell fa-3x"></i>
+        </a>
+        <a href="home.php" class="header-operation_users">
+            <i class="fa fa-users fa-3x"></i>
+        </a>
+        <a href="home.php" class="header-operation_cog">
+            <i class="fa fa-cog fa-3x"></i>
+        </a>
     </div>
 </header>
