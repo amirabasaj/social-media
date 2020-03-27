@@ -1,3 +1,5 @@
+
+
 const loginFormBtn=document.querySelector('.loginRegister-container-box_loginForm_registerLink');
 
 const registerFormBtn=document.querySelector('.loginRegister-container-box_registerForm_loginLink');
@@ -10,61 +12,31 @@ const rememberMe=document.querySelector('#rememberMe');
 
 const registerForm=document.querySelector('.loginRegister-container-box_registerForm');
 const loginForm=document.querySelector('.loginRegister-container-box_loginForm');
-let registerFormHeight=registerForm.offsetHeight;
-let loginFormHeight=loginForm.offsetHeight;
-
-registerForm.style.height=registerFormHeight+'px';
-loginForm.style.height=0+'px';
 
 
-loginFormBtn.addEventListener('click',()=>{
-  
-  loginForm.style.transitionProperty="height";
-  loginForm.style.transitionDuration=500+'ms';
-  loginForm.style.height=0+'px';
+$(document).ready(function(){
 
-  window.setTimeout(()=>{
 
-    loginForm.style.removeProperty('transition-duration');
-    loginForm.style.removeProperty('transition-property');
 
-    registerForm.style.transitionProperty = "height";
-    registerForm.style.transitionDuration = 500 + 'ms';
-    registerForm.style.height = registerFormHeight + 'px'
+  $('.loginRegister-container-box_loginForm_registerLink').on("click",function(){
 
-    window.setTimeout( () => {
-      registerForm.style.removeProperty('transition-duration');
-      registerForm.style.removeProperty('transition-property');
-    }, 500);
+    $('.loginRegister-container-box_loginForm').slideUp("slow",function(){
 
-  },500);
+      $('.loginRegister-container-box_registerForm').slideDown("slow");
+    });
+  });
+
+  $('.loginRegister-container-box_registerForm_loginLink').on("click",function(){
+
+    $('.loginRegister-container-box_registerForm').slideUp("slow",function(){
+
+      $('.loginRegister-container-box_loginForm').slideDown("slow");
+    });
+  });
 
 });
 
 
-registerFormBtn.addEventListener('click',()=>{
-  
-  registerForm.style.transitionProperty="height";
-  registerForm.style.transitionDuration=500+'ms';
-  registerForm.style.height=0+'px';
-
-  window.setTimeout(()=>{
-
-    registerForm.style.removeProperty('transition-duration');
-    registerForm.style.removeProperty('transition-property');
-
-    loginForm.style.transitionProperty = "height";
-    loginForm.style.transitionDuration = 500 + 'ms';
-    loginForm.style.height = loginFormHeight + 'px'
-
-    window.setTimeout( () => {
-      loginForm.style.removeProperty('transition-duration');
-      loginForm.style.removeProperty('transition-property');
-    }, 500);
-
-  },500);
-  
-});
 
 rememberMe.addEventListener('click',()=>{
 

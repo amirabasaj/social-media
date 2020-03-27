@@ -1,8 +1,6 @@
 @import './basics';
 @import './variable';
-:root{
-    --formHeight:auto;
-}
+
 .loader{
     &--active{
 
@@ -166,6 +164,7 @@
             }
         }
         &_registerForm{
+            display: none;
             &_errorBox{
                 border-radius: 5px;
                 padding: 1rem 0.5rem;
@@ -230,16 +229,6 @@
                 }
             }
         }
-    }
-}
-
-@keyframes slideDonw{
-    0%{
-        height: 0px;
-    }
-
-    100%{
-        height: var(--formHeight);
     }
 }
 
