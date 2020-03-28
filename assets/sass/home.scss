@@ -1,1 +1,18 @@
 @import './partial-header';
+@import './checkbox';
+@import './radio';
+
+.container{
+    font-size: 1.6rem;
+    width: 100%;
+    padding: 1rem 0.5rem;
+    &-main{
+
+        background-color: whitesmoke;
+        border: 2px solid $color-gray;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+}

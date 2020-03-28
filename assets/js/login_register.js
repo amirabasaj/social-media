@@ -57,32 +57,57 @@ loginForm.addEventListener('submit',function(e){
    const usernameField=this.querySelector('input[name="login_user"]').value;
    const passwordField=this.querySelector('input[name="login_password"]').value;
 
-   var xmlhttp = new XMLHttpRequest();
+  //  var xmlhttp = new XMLHttpRequest();
 
-   xmlhttp.onreadystatechange = function() {
+  //  xmlhttp.onreadystatechange = function() {
 
 
-       window.setTimeout(()=>{
+  //      window.setTimeout(()=>{
 
+  //       loadingBox.classList.remove('loader--active');
+  //       if (this.readyState == 4 && this.status == 200) {
+  //         const response=JSON.parse(this.responseText);
+  //         if(response.success==="YES"){
+  //           console.log(location.hostname+':'+location.port+'/home.php');
+  //           location.replace('http://'+location.hostname+':'+location.port+'/home.php');
+  //         }
+  //         else{
+  //           errorBoxParagraph.parentElement.classList.add('loginRegister-container-box_loginForm_errorBox--active')
+  //            errorBoxParagraph.textContent=response.error;
+  //         }
+  //       }
+
+  //    },1000);
+  //  };
+
+ 
+    fetch('../../auth/login_handler.php',{
+      method:"POST",
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body:JSON.stringify({"login_username":usernameField,"login_password" : passwordField,rememberMe:rememberMe.value})
+    })
+    .then(data=> data.json())
+    .then((res)=>{
+
+      window.setTimeout(()=>{
         loadingBox.classList.remove('loader--active');
-        if (this.readyState == 4 && this.status == 200) {
-          const response=JSON.parse(this.responseText);
-          if(response.success==="YES"){
-            console.log(location.hostname+':'+location.port+'/home.php');
-            location.replace('http://'+location.hostname+':'+location.port+'/home.php');
-          }
-          else{
-            errorBoxParagraph.parentElement.classList.add('loginRegister-container-box_loginForm_errorBox--active')
-             errorBoxParagraph.textContent=response.error;
-          }
+
+        if(res.success==="YES"){
+          
+          location.replace('http://'+location.hostname+':'+location.port+'/home.php');
         }
+        else{
+          errorBoxParagraph.parentElement.classList.add('loginRegister-container-box_loginForm_errorBox--active')
+           errorBoxParagraph.textContent=res.error;
+        }
+      },1000);
 
-     },1000);
-   };
+    });
 
-   console.log(rememberMe.value);
-   xmlhttp.open("POST", "../../auth/login_handler.php");
-   xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-   xmlhttp.send(JSON.stringify({"login_username":usernameField,"login_password" : passwordField,rememberMe:rememberMe.value}));
+  //  xmlhttp.open("POST", "../../auth/login_handler.php");
+  //  xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  //  xmlhttp.send(JSON.stringify({"login_username":usernameField,"login_password" : passwordField,rememberMe:rememberMe.value}));
    
 });

@@ -22,5 +22,44 @@
         require './partialViews/header.php';
         
     ?>
+
+    <section class="container">
+        <div class="container-main">
+
+            <div class="container-main-posts">
+            </div>
+            
+            <div class="container-main-searchbox">
+            <ul class="container-main-searchbox-listbox">
+                <li>
+                <label for="rememberMe" class="primary__checkbox">
+                    <span>مرا بخاطر بسپار</span>
+                    <input type="checkbox" name="remember_me" id="rememberMe" value="0">
+                </label>
+                </li>
+                <li>
+                <label for="rememberMe" class="primary__checkbox">
+                    <span>مرا بخاطر بسپار</span>
+                    <input type="checkbox" name="remember_me" id="rememberMe" value="0">
+                </label>
+                </li>
+                <li>
+                <label for="rememberMe" class="primary__checkbox">
+                    <span>مرا بخاطر بسپار</span>
+                    <input type="checkbox" name="remember_me" id="rememberMe" value="0">
+                </label>
+                </li>
+                <li>
+                <label for="rememberMe" class="primary__checkbox">
+                    <span>مرا بخاطر بسپار</span>
+                    <input type="checkbox" name="remember_me" id="rememberMe" value="0">
+                </label>
+                </li>
+            </ul>
+            </div>
+
+
+        </div>
+    </section>
 </body>
 </html>

@@ -19,6 +19,73 @@ html, body {
   font-family: B-nazanin,Arial, Helvetica, sans-serif;
   direction: rtl; }
 
+.primary__checkbox {
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem; }
+  .primary__checkbox input {
+    appearance: none;
+    margin-right: 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    overflow: hidden; }
+    .primary__checkbox input::before {
+      display: block;
+      content: '';
+      width: 20px;
+      height: 18px;
+      border: 2px solid #3498db; }
+    .primary__checkbox input::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      background-color: transparent;
+      box-shadow: 4px 4px 0px 0px #57a6db;
+      transform-origin: 50% 50%;
+      opacity: 0;
+      transform: rotate(45deg) translate(-158%, -48%);
+      transition: opacity .3s linear;
+      width: 8px;
+      height: 15px; }
+    .primary__checkbox input:checked::after {
+      opacity: 1; }
+
+.primary__radio {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 0.5rem; }
+  .primary__radio input {
+    appearance: none;
+    margin-right: 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    overflow: hidden; }
+    .primary__radio input::before {
+      display: block;
+      content: '';
+      width: 20px;
+      height: 18px;
+      border: 2px solid #3498db;
+      border-radius: 50%; }
+    .primary__radio input::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 25%;
+      top: 28%;
+      background-color: #57a6db;
+      opacity: 0;
+      border-radius: 50%;
+      transition: opacity .3s linear;
+      width: 10px;
+      height: 8px; }
+    .primary__radio input:checked::after {
+      opacity: 1; }
+
 .loader {
   display: none;
   position: fixed;
@@ -107,39 +174,6 @@ html, body {
       background-color: #eebaba; }
       .loginRegister-container-box_loginForm_errorBox--active {
         visibility: visible; }
-    .loginRegister-container-box_loginForm_remember {
-      display: flex;
-      align-items: center;
-      margin-right: 0.5rem; }
-      .loginRegister-container-box_loginForm_remember input {
-        appearance: none;
-        margin-right: 5px;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        position: relative;
-        overflow: hidden; }
-        .loginRegister-container-box_loginForm_remember input::before {
-          display: block;
-          content: '';
-          width: 20px;
-          height: 18px;
-          border: 2px solid #3498db; }
-        .loginRegister-container-box_loginForm_remember input::after {
-          content: '';
-          display: block;
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          background-color: transparent;
-          box-shadow: 4px 4px 0px 0px #57a6db;
-          transform-origin: 50% 50%;
-          opacity: 0;
-          transform: rotate(45deg) translate(-158%, -48%);
-          transition: opacity .3s linear;
-          width: 8px;
-          height: 15px; }
-        .loginRegister-container-box_loginForm_remember input:checked::after {
-          opacity: 1; }
     .loginRegister-container-box_loginForm_registerLink {
       display: block;
       color: #3498db;
@@ -160,38 +194,6 @@ html, body {
         background-color: #eebaba; }
         .loginRegister-container-box_registerForm_errorBox p {
           margin-bottom: .5rem; }
-      .loginRegister-container-box_registerForm_gender {
-        display: inline-flex;
-        align-items: center;
-        margin-right: 0.5rem; }
-        .loginRegister-container-box_registerForm_gender input {
-          appearance: none;
-          margin-right: 5px;
-          -webkit-appearance: none;
-          -moz-appearance: none;
-          position: relative;
-          overflow: hidden; }
-          .loginRegister-container-box_registerForm_gender input::before {
-            display: block;
-            content: '';
-            width: 20px;
-            height: 18px;
-            border: 2px solid #3498db;
-            border-radius: 50%; }
-          .loginRegister-container-box_registerForm_gender input::after {
-            content: '';
-            display: block;
-            position: absolute;
-            left: 25%;
-            top: 28%;
-            background-color: #57a6db;
-            opacity: 0;
-            border-radius: 50%;
-            transition: opacity .3s linear;
-            width: 10px;
-            height: 8px; }
-          .loginRegister-container-box_registerForm_gender input:checked::after {
-            opacity: 1; }
       .loginRegister-container-box_registerForm_loginLink {
         display: block;
         color: #3498db;

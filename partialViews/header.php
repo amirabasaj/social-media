@@ -1,6 +1,10 @@
 
 <?php
 
+    if($_SERVER['REQUEST_URI']=='/partialViews/header.php'){
+        header("Location: ../home.php");
+    }
+
     $userPic='';
     $res=mysqli_query($conn,"SELECT profile_pic FROM users WHERE username='$_SESSION[login_username]'");
     if(mysqli_num_rows($res)==1){

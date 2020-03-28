@@ -36,7 +36,7 @@
 
                 <input type="password" required placeholder="رمز عبور"name="login_password">
 
-                <label for="rememberMe" class="loginRegister-container-box_loginForm_remember">            <span>مرا بخاطر بسپار</span>
+                <label for="rememberMe" class="primary__checkbox">            <span>مرا بخاطر بسپار</span>
                 <input type="checkbox" name="remember_me" id="rememberMe" value="0">
 
                 </label>
@@ -71,12 +71,12 @@
     
                 <input type="password" placeholder="تکرار رمز عبور "name="conf_password"      required>
     
-                <label for="male-gender" class="loginRegister-container-box_registerForm_gender">
+                <label for="male-gender" class="primary__radio">
                     <span>مرد</span>
                     <input type="radio" name="gender" checked value="male">
                 </label>
     
-                <label for="female-gender" class="loginRegister-container-box_registerForm_gender">
+                <label for="female-gender" class="primary__radio">
                     <span>زن</span>
                     <input type="radio" name="gender" value="female">
                 </label>
