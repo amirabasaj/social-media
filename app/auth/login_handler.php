@@ -3,7 +3,7 @@
     session_start();
     $http=(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http");
 
-    require '../database/database.php';
+    require '../../database/database.php';
 
     function encryptCookie($value){
         $encrypt_method = "AES-256-CBC";
@@ -65,6 +65,6 @@
         echo json_encode($jsonResponse);
     }
     else{
-        header("Location:$http://$_SERVER[HTTP_HOST]/auth/login_register.php");
+        header("Location:$http://$_SERVER[HTTP_HOST]/app/auth/login_register.php");
     }
  ?>

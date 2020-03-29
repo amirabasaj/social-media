@@ -4,7 +4,7 @@
       if(isset($_POST['register']) && isset($_POST['reg_username'])&&isset($_POST['reg_email'])&&isset($_POST['reg_password'])&&isset($_POST['conf_password'])){
         
         $errors_array=array();   
-        require '../database/database.php';   
+        require '../../database/database.php';   
 
             
         $reg_username=str_replace(' ','',strip_tags($_POST['reg_username']));
@@ -61,16 +61,16 @@
                 $_SESSION['reg_username']='';
                 $_SESSION['reg_email']='';
                 $_SESSION['login_username']=$reg_username;
-                header("Location:$http://$_SERVER[HTTP_HOST]/home.php");
+                header("Location:$http://$_SERVER[HTTP_HOST]/app/home.php");
             }
         }
         else{
 
             $_SESSION['errors_array']=$errors_array;
-            header("Location:$http://$_SERVER[HTTP_HOST]/auth/login_register.php");
+            header("Location:$http://$_SERVER[HTTP_HOST]/app/auth/login_register.php");
         }
     }
     else{
-        header("Location:$http://$_SERVER[HTTP_HOST]/auth/login_register.php");
+        header("Location:$http://$_SERVER[HTTP_HOST]/app/auth/login_register.php");
     }
 ?>

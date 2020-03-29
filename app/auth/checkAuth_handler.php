@@ -22,23 +22,23 @@ if(isset($_COOKIE['remember_me'])){
         $_SESSION['login_email']=$user['email'];
        
         
-        if($actual_link!=$http."://$_SERVER[HTTP_HOST]/home.php"){
-            header("Location:$http://$_SERVER[HTTP_HOST]/home.php");
+        if($actual_link!=$http."://$_SERVER[HTTP_HOST]/app/home.php"){
+            header("Location:$http://$_SERVER[HTTP_HOST]/app/home.php");
         }
     }
 }
 
 else if(isset($_SESSION['login_username']))
 {
-    if($actual_link!=$http."://".$_SERVER['HTTP_HOST']."/home.php"){
-        header("Location:".$http."://".$_SERVER['HTTP_HOST']."/home.php");
+    if($actual_link!=$http."://".$_SERVER['HTTP_HOST']."/app/home.php"){
+        header("Location:".$http."://".$_SERVER['HTTP_HOST']."/app/home.php");
     }
 
 }
 else{
 
-    if($actual_link!=$http."://".$_SERVER['HTTP_HOST']."/auth/login_register.php"){
-        header("Location:".$http."://".$_SERVER['HTTP_HOST']."/auth/login_register.php");
+    if($actual_link!=$http."://".$_SERVER['HTTP_HOST']."/app/auth/login_register.php"){
+        header("Location:".$http."://".$_SERVER['HTTP_HOST']."/app/auth/login_register.php");
     }
 }
 

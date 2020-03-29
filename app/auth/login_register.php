@@ -1,7 +1,7 @@
  <?php
      ob_start();
      session_start(); 
-     require '../database/database.php';
+     require '../../database/database.php';
      require './checkAuth_handler.php';
                
  ?>
@@ -11,13 +11,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ورود و ثبت نام</title>
-    <link rel="stylesheet" href="../assets/css/login_register.css">
-    <script src="../assets/js/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="../../assets/css/login_register.css">
+    <script src="../../assets/js/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 
 <div class="loader">
-    <img src="../assets/img/loading.gif">
+    <img src="../../assets/img/loading.gif">
     <p>لطفا صبر کنید..</p>
 </div>    
 
@@ -87,7 +87,7 @@
         </div>
     </div>
 </div>
-<script src="../assets/js/login_register.js"></script>
+<script src="../../assets/js/login_register.js"></script>
 </body>
 </html>
 
