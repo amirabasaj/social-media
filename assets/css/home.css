@@ -134,9 +134,11 @@ html, body {
 .container {
   font-size: 1.6rem;
   width: 100%;
-  padding: 1rem 0.5rem; }
+  padding: 1rem 0.5rem;
+  background-color: whitesmoke;
+  height: 100vh; }
   .container-main {
-    background-color: whitesmoke;
+    background-color: white;
     border: 2px solid #dddbdb;
     border-radius: 5px;
     display: flex;

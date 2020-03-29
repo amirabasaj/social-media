@@ -14,7 +14,7 @@
     <title>خانه</title>
     <link rel="stylesheet" href="../../assets/css/home.css">
     <link rel="stylesheet" href="../../assets/fonts/font-awesome/all.min.css">
-    <script src="../../assets/fonts/font-awesome/all.min.js"></script>
+
 </head>
 <body>
     <?php 
@@ -27,6 +27,9 @@
         <div class="container-main">
 
             <div class="container-main-posts">
+                
+                <?php
+                echo $_SESSION['login_username'];?>
             </div>
             
             <div class="container-main-searchbox">
@@ -61,5 +64,7 @@
 
         </div>
     </section>
+
+    <script src="../../assets/fonts/font-awesome/all.min.js"></script>
 </body>
 </html>

@@ -1,0 +1,65 @@
+@font-face {
+  font-family: B-nazanin;
+  src: url("../fonts/B-Nazanin.ttf"); }
+
+*, *::after, *::before {
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  box-sizing: inherit;
+  scrollbar-highlight-color: none;
+  -webkit-tap-highlight-color: none; }
+
+*:focus {
+  outline: none; }
+
+html, body {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  font-family: B-nazanin,Arial, Helvetica, sans-serif;
+  direction: rtl; }
+
+.header {
+  background-color: #2c82bb;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  justify-content: space-between; }
+  .header-imgbox {
+    width: 60px;
+    height: 60px; }
+    .header-imgbox img {
+      width: 100%;
+      height: 100%;
+      border: 2px solid whitesmoke;
+      border-radius: 50%; }
+  .header-operation a {
+    margin-right: 0.75rem;
+    display: inline-block;
+    color: whitesmoke; }
+    .header-operation a:hover {
+      color: #dddbdb; }
+  .header-searchbox {
+    flex-basis: 30%; }
+    .header-searchbox-content {
+      position: relative;
+      width: 100%; }
+      .header-searchbox-content input {
+        padding: 0.5rem .75rem;
+        width: 100%;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.6rem; }
+      .header-searchbox-content_icon {
+        cursor: pointer;
+        position: absolute;
+        width: 32px;
+        left: 0;
+        top: 1px;
+        border: none;
+        height: 100%;
+        background-color: transparent; }
+        .header-searchbox-content_icon:hover svg {
+          color: #3498db; }
+        .header-searchbox-content_icon svg {
+          color: #2c82bb; }
