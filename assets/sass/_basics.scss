@@ -1,24 +1,118 @@
-@font-face{
-    font-family: B-nazanin;
-    src: url('../fonts/B-Nazanin.ttf');
+@font-face {
+  font-family: B-nazanin;
+  src: url('../fonts/B-Nazanin.ttf');
 }
-*,*::after,*::before{
-    padding: 0;
-    margin:0;
-    color: inherit;
-    box-sizing: inherit;
-    scrollbar-highlight-color: none;
-    -webkit-tap-highlight-color: none;
-}
-
-*:focus{
-    outline: none;
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  box-sizing: inherit;
+  scrollbar-highlight-color: none;
+  -webkit-tap-highlight-color: none;
 }
 
-html,body{
-    box-sizing: border-box;
-    font-size: 62.5%;
-    font-family: B-nazanin,Arial, Helvetica, sans-serif;
-    direction: rtl;
+*:focus {
+  outline: none;
 }
 
+html,
+body {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  font-family: B-nazanin, Arial, Helvetica, sans-serif;
+  direction: rtl;
+}
+
+.mt-1 {
+  margin-top: 0.5rem;
+}
+
+.mt-2 {
+  margin-top: 1rem;
+}
+.mt-3 {
+  margin-top: 1.5rem;
+}
+.mt-4 {
+  margin-top: 2rem;
+}
+.mt-5 {
+  margin-top: 3rem;
+}
+.mr-1 {
+  margin-right: 0.5rem;
+}
+.mr-2 {
+  margin-right: 1rem;
+}
+
+.mr-3 {
+  margin-right: 1.5rem;
+}
+.mr-4 {
+  margin-right: 2rem;
+}
+
+.mr-5 {
+  margin-right: 3rem;
+}
+
+.ml-1 {
+  margin-left: 0.5rem;
+}
+.ml-2 {
+  margin-left: 1rem;
+}
+
+.ml-3 {
+  margin-left: 1.5rem;
+}
+.ml-4 {
+  margin-left: 2rem;
+}
+
+.ml-5 {
+  margin-left: 3rem;
+}
+
+.mb-1 {
+  margin-bottom: 0.5rem;
+}
+.mb-2 {
+  margin-bottom: 1rem;
+}
+
+.mb-3 {
+  margin-bottom: 1.5rem;
+}
+.mb-4 {
+  margin-bottom: 2rem;
+}
+
+.mb-5 {
+  margin-bottom: 3rem;
+}
+
+.m-1 {
+  margin: 0.5rem;
+}
+.m-2 {
+  margin: 1rem;
+}
+
+.m-3 {
+  margin: 1.5rem;
+}
+.m-4 {
+  margin: 2rem;
+}
+
+.m-5 {
+  margin: 3rem;
+}
+
+.text-align-center {
+  text-align: center;
+}
