@@ -1,6 +1,6 @@
 <?php
 
-    $conn=mysqli_connect('localhost','amirabasajoudani','amir2122','socialmedia');
+    $conn=mysqli_connect('remotemysql.com','NIsbEoLfnd','ittQqIGx9N','NIsbEoLfnd');
 
   
     

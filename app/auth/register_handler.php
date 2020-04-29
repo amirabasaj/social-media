@@ -36,11 +36,6 @@
             array_push($errors_array,'نام کاربری وجود دارد.');
         }
 
-        $checkEmailResult=mysqli_query($conn,"SELECT email FROM users WHERE email='$reg_email'");
-        
-        if(mysqli_num_rows($checkEmailResult)>0){
-            array_push($errors_array,'آدرس ایمیل وجود دارد.');
-        }
         
         if(count($errors_array)==0){
             $reg_password=md5($reg_password);

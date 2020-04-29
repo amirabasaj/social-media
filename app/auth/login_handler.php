@@ -42,7 +42,7 @@
                     if($remember_me=='1'){
                         $enCookie=encryptCookie($user_username);
                         $_SESSION['timenow']=time();
-                        $_SESSION['timeexpire']=time()+($days*600);
+                        $_SESSION['timeexpire']=time()+(1*600);
                         setcookie('remember_me',$enCookie,time()+(60*60*4),'/');
                     }
                     $_SESSION['login_username']=$user_username;
