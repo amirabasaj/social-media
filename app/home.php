@@ -88,15 +88,9 @@ require './auth/checkAuth_handler.php';
 							<h4 class="mt-3">تگ ها : <span><?php echo "#" . $post_tag1; ?>،</span> <span><?php echo "#" . $post_tag2; ?>،</span> <span><?php echo "#" . $post_tag3; ?></span> </h4>
 						</div>
 						<div class="container-main-posts-item_footer">
-							<a href="home.php?liked=<?php echo $post_id; ?>" class="container-main-posts-item_footer_icon">
+							<a  class="container-main-posts-item_footer_icon" data-postid=<?php echo $post_id ?>>
 
-								<?php
-								like();
-								?>
-
-
-
-								<i class="fas fa-heart "></i><span><?php echo $post_likes; ?></span>
+								<i class="fas fa-heart "></i><span class='post-likes'><?php echo $post_likes; ?></span>
 							</a>
 							<a href="#" class="container-main-posts-item_footer_view-btn">مشاهده کامل</a>
 						</div>
