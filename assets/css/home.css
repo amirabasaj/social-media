@@ -22,6 +22,13 @@ body {
   font-family: B-nazanin, Arial, Helvetica, sans-serif;
   direction: rtl; }
 
+.primary-input {
+  border: none;
+  width: 100%;
+  border-radius: 5px;
+  background-color: whitesmoke;
+  padding: 0.4rem 0.5rem; }
+
 .mt-1 {
   margin-top: 0.5rem; }
 
@@ -126,7 +133,7 @@ body {
       position: relative;
       width: 100%; }
       .header-searchbox-content input {
-        padding: 0.5rem .75rem;
+        padding: 0.5rem 0.75rem;
         width: 100%;
         border: none;
         border-radius: 10px;
@@ -302,21 +309,9 @@ body {
           color: grey; }
           .container-main-searchbox-form-author label h4 {
             display: inline-block; }
-        .container-main-searchbox-form-author input {
-          border: none;
-          width: 100%;
-          border-radius: 5px;
-          background-color: whitesmoke;
-          padding: 0.4rem 0.5rem; }
         .container-main-searchbox-form-username label {
           color: grey; }
           .container-main-searchbox-form-username label h4 {
             display: inline-block; }
-        .container-main-searchbox-form-username input {
-          border: none;
-          width: 100%;
-          border-radius: 5px;
-          background-color: whitesmoke;
-          padding: 0.4rem 0.5rem; }
       .container-main-searchbox-advertising {
         padding: 1rem; }

@@ -119,13 +119,6 @@
               display: inline-block;
             }
           }
-          & input {
-            border: none;
-            width: 100%;
-            border-radius: 5px;
-            background-color: whitesmoke;
-            padding: 0.4rem 0.5rem;
-          }
         }
         &-username {
           & label {
@@ -134,13 +127,6 @@
             & h4 {
               display: inline-block;
             }
-          }
-          & input {
-            border: none;
-            width: 100%;
-            border-radius: 5px;
-            background-color: whitesmoke;
-            padding: 0.4rem 0.5rem;
           }
         }
       }
