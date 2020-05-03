@@ -2,7 +2,9 @@
   font-family: B-nazanin;
   src: url("../fonts/B-Nazanin.ttf"); }
 
-*, *::after, *::before {
+*,
+*::after,
+*::before {
   padding: 0;
   margin: 0;
   color: inherit;
@@ -13,11 +15,97 @@
 *:focus {
   outline: none; }
 
-html, body {
+html,
+body {
   box-sizing: border-box;
   font-size: 62.5%;
-  font-family: B-nazanin,Arial, Helvetica, sans-serif;
+  font-family: B-nazanin, Arial, Helvetica, sans-serif;
   direction: rtl; }
+
+.primary-input {
+  border: none;
+  width: 100%;
+  border-radius: 5px;
+  background-color: whitesmoke;
+  padding: 0.4rem 0.5rem; }
+
+.mt-1 {
+  margin-top: 0.5rem; }
+
+.mt-2 {
+  margin-top: 1rem; }
+
+.mt-3 {
+  margin-top: 1.5rem; }
+
+.mt-4 {
+  margin-top: 2rem; }
+
+.mt-5 {
+  margin-top: 3rem; }
+
+.mr-1 {
+  margin-right: 0.5rem; }
+
+.mr-2 {
+  margin-right: 1rem; }
+
+.mr-3 {
+  margin-right: 1.5rem; }
+
+.mr-4 {
+  margin-right: 2rem; }
+
+.mr-5 {
+  margin-right: 3rem; }
+
+.ml-1 {
+  margin-left: 0.5rem; }
+
+.ml-2 {
+  margin-left: 1rem; }
+
+.ml-3 {
+  margin-left: 1.5rem; }
+
+.ml-4 {
+  margin-left: 2rem; }
+
+.ml-5 {
+  margin-left: 3rem; }
+
+.mb-1 {
+  margin-bottom: 0.5rem; }
+
+.mb-2 {
+  margin-bottom: 1rem; }
+
+.mb-3 {
+  margin-bottom: 1.5rem; }
+
+.mb-4 {
+  margin-bottom: 2rem; }
+
+.mb-5 {
+  margin-bottom: 3rem; }
+
+.m-1 {
+  margin: 0.5rem; }
+
+.m-2 {
+  margin: 1rem; }
+
+.m-3 {
+  margin: 1.5rem; }
+
+.m-4 {
+  margin: 2rem; }
+
+.m-5 {
+  margin: 3rem; }
+
+.text-align-center {
+  text-align: center; }
 
 .header {
   background-color: #2c82bb;
@@ -45,7 +133,7 @@ html, body {
       position: relative;
       width: 100%; }
       .header-searchbox-content input {
-        padding: 0.5rem .75rem;
+        padding: 0.5rem 0.75rem;
         width: 100%;
         border: none;
         border-radius: 10px;
@@ -63,3 +151,136 @@ html, body {
           color: #3498db; }
         .header-searchbox-content_icon svg {
           color: #2c82bb; }
+
+.profile {
+  font-size: 1.6rem;
+  padding: 2rem 1rem;
+  max-width: 1100px;
+  margin: 1rem auto;
+  background-color: whitesmoke;
+  border-radius: 5px; }
+  .profile-tab {
+    margin-top: 1rem;
+    display: none; }
+    .profile-tab > * {
+      padding: 1rem;
+      background-color: white;
+      border-radius: 5px;
+      margin-top: 1rem; }
+    .profile-tab.show {
+      display: block; }
+    .profile-tab-nav {
+      list-style: none;
+      font-size: 0;
+      border-bottom: 1px solid #ecc74a; }
+      .profile-tab-nav li {
+        font-size: 1.6rem;
+        display: inline-block; }
+        .profile-tab-nav li a {
+          padding: 0 0.75rem;
+          border: 1px solid transparent;
+          text-decoration: none; }
+        .profile-tab-nav li a.active {
+          background-color: whitesmoke;
+          border-color: #ec8b4a;
+          border-bottom-color: transparent; }
+  .profile .change-info-form {
+    background-color: white; }
+    .profile .change-info-form input {
+      width: 30%;
+      margin-left: 1rem;
+      padding: 0.4rem 1rem; }
+    .profile .change-info-form-submit {
+      text-align: left; }
+      .profile .change-info-form-submit_btn {
+        display: inline-block;
+        padding: 1rem 1.2rem;
+        background-color: #2d792d;
+        color: white;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px; }
+        .profile .change-info-form-submit_btn:hover {
+          background-color: #358a35; }
+  .profile .change-image-form {
+    background-color: white;
+    margin-top: 3rem; }
+    .profile .change-image-form input {
+      width: 0;
+      height: 0; }
+    .profile .change-image-form label {
+      background-color: #3498db;
+      padding: 1rem 1.2rem;
+      display: inline-block;
+      cursor: pointer;
+      color: white;
+      border-radius: 5px; }
+      .profile .change-image-form label:hover {
+        background-color: #57a6db; }
+    .profile .change-image-form-submit {
+      text-align: left; }
+      .profile .change-image-form-submit_btn {
+        display: inline-block;
+        padding: 1rem 1.2rem;
+        cursor: pointer;
+        background-color: #2d792d;
+        color: white;
+        border: none;
+        border-radius: 5px; }
+        .profile .change-image-form-submit_btn:hover {
+          background-color: #358a35; }
+  .profile .see-statistics-box {
+    display: flex;
+    background-color: white; }
+    .profile .see-statistics-box-item {
+      flex-basis: 33%;
+      align-self: flex-start;
+      border: 2px solid #dddbdb;
+      border-radius: 5px;
+      overflow: hidden; }
+      .profile .see-statistics-box-item:not(:last-child) {
+        margin-left: 1rem; }
+      .profile .see-statistics-box-item_header {
+        font-size: 0; }
+        .profile .see-statistics-box-item_header img {
+          width: 100%;
+          object-fit: cover;
+          max-height: 200px;
+          border-bottom: 2px solid #ec8b4a; }
+        .profile .see-statistics-box-item_header .video-js {
+          width: 100%;
+          object-fit: cover;
+          max-height: 200px;
+          border-bottom: 2px solid #ec8b4a; }
+      .profile .see-statistics-box-item_body {
+        padding: 1rem; }
+        .profile .see-statistics-box-item_body p {
+          text-align: justify; }
+      .profile .see-statistics-box-item_footer {
+        display: flex;
+        padding: 1rem;
+        align-items: center;
+        justify-content: space-between; }
+        .profile .see-statistics-box-item_footer > a {
+          display: flex;
+          align-items: center;
+          align-self: center;
+          cursor: pointer; }
+        .profile .see-statistics-box-item_footer svg.fa-trash {
+          color: #ec8b4a; }
+        .profile .see-statistics-box-item_footer svg.fa-heart {
+          color: red; }
+        .profile .see-statistics-box-item_footer svg.fa-comment {
+          color: #3b3b3b; }
+  .profile .add-post-box-form input[type='file'] {
+    width: 0;
+    height: 0; }
+  .profile .add-post-box-form label.image-label {
+    background-color: #3498db;
+    padding: 1rem 1.2rem;
+    display: inline-block;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px; }
+    .profile .add-post-box-form label.image-label:hover {
+      background-color: #57a6db; }

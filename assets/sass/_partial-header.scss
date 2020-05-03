@@ -1,69 +1,62 @@
 @import './basics';
 @import './variable';
 
-.header{
-    background-color:$color-primary-dark;
-    display: flex;
-    align-items: center;
-    padding:0.5rem;
-    justify-content: space-between;
-    &-imgbox{
-        width: 60px;
-        height: 60px;
-        img{
-            width: 100%;
-            height: 100%;
-            border: 2px solid whitesmoke;
-            border-radius: 50%;
-        }
+.header {
+  background-color: $color-primary-dark;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  justify-content: space-between;
+  &-imgbox {
+    width: 60px;
+    height: 60px;
+    img {
+      width: 100%;
+      height: 100%;
+      border: 2px solid whitesmoke;
+      border-radius: 50%;
     }
-    &-operation{
-        a{
-            margin-right: 0.75rem;
-            display: inline-block;
-            color: whitesmoke;
-            &:hover{
-                color: $color-gray;
-            }
-        }
+  }
+  &-operation {
+    a {
+      margin-right: 0.75rem;
+      display: inline-block;
+      color: whitesmoke;
+      &:hover {
+        color: $color-gray;
+      }
     }
-    &-searchbox{
-        flex-basis: 30%;
-        &-content{
-
-            position: relative;
-            width: 100%;
-            input{
-                padding: 0.5rem .75rem;
-                width: 100%;
-                border: none;
-                border-radius: 10px;
-                font-size: 1.6rem;
-
-            }
-            &_icon{
-                cursor: pointer;
-                position: absolute;
-                width: 32px;
-                left: 0;
-                top: 1px;
-                border: none;
-                height: 100%;
-                &:hover{
-                    svg{
-                        color: $color-primary;
-                    }
-                }
-                background-color: transparent;
-                svg{
-                    
-                    color:$color-primary-dark;
-                }
-              
-            }
-        
-        }  
-     }
-    
-
+  }
+  &-searchbox {
+    flex-basis: 30%;
+    &-content {
+      position: relative;
+      width: 100%;
+      input {
+        padding: 0.5rem 0.75rem;
+        width: 100%;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.6rem;
+      }
+      &_icon {
+        cursor: pointer;
+        position: absolute;
+        width: 32px;
+        left: 0;
+        top: 1px;
+        border: none;
+        height: 100%;
+        &:hover {
+          svg {
+            color: $color-primary;
+          }
+        }
+        background-color: transparent;
+        svg {
+          color: $color-primary-dark;
+        }
+      }
+    }
+  }
 }

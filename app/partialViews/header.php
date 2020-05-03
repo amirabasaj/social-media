@@ -20,9 +20,9 @@
     <form class="header-searchbox">
         <div class="header-searchbox-content">
             
-            <input type="text" placeholder="جست و جو..">
-            <button class="header-searchbox-content_icon">
-                <i class="fa fa-search"></i>
+            <input name="search" type="text" placeholder="جست و جو..">
+            <button class="header-searchbox-content_icon" name="submit" type="submit">
+                <i class="fa fa-search" ></i>
             </button>
 
         </div>
