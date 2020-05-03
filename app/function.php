@@ -41,18 +41,18 @@ function separator($media)
 	}
 }
 
-function like(){
-	global $flag;
-	global $conn;
-	$selected_post_id =0;
-	if ($flag == 0) {
-		if (isset($_GET['liked'])) {
-			$selected_post_id = $_GET['liked'];
-		}
+// function like(){
+// 	global $flag;
+// 	global $conn;
+// 	$selected_post_id =0;
+// 	if ($flag == 0) {
+// 		if (isset($_GET['liked'])) {
+// 			$selected_post_id = $_GET['liked'];
+// 		}
 
-		$query = "UPDATE posts SET likes = likes + 1	 WHERE post_id ={$selected_post_id} ";
-		$result = mysqli_query($conn, $query);
-		$flag += 1;
-	}
+// 		$query = "UPDATE posts SET likes = likes + 1	 WHERE post_id ={$selected_post_id} ";
+// 		$result = mysqli_query($conn, $query);
+// 		$flag += 1;
+// 	}
 
-}
+// }
