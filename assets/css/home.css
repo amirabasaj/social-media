@@ -255,6 +255,7 @@ body {
           .container-main-posts-item_body p {
             text-align: justify; }
         .container-main-posts-item_footer {
+          cursor: pointer;
           display: flex;
           justify-content: space-between;
           align-items: stretch;
@@ -262,6 +263,7 @@ body {
           .container-main-posts-item_footer svg {
             color: red; }
           .container-main-posts-item_footer_icon {
+            cursor: pointer;
             display: flex;
             align-items: center;
             align-self: flex-end;

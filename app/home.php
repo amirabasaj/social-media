@@ -42,13 +42,35 @@ require './auth/checkAuth_handler.php';
 				while ($row = mysqli_fetch_assoc($select_all_posts)) {
 					$post_title = $row['post_title'];
 					$post_author = $row['author'];
-					$post_tag1 = $row['tag1'];
-					$post_tag2 = $row['tag2'];
-					$post_tag3 = $row['tag3'];
+					$post_tags = $row['s_tag'];
+					$post_tagsp = $row['sp_tag'];
+					$post_tage = $row['e_tag'];
+					$post_tagp = $row['p_tag'];
 					$post_content = $row['content'];
 					$post_likes = $row['likes'];
 					$post_media = $row['media'];
 					$post_id = $row['post_id'];
+
+					if ($post_tags == 1) {
+						$post_tags = '#علمی';
+					} else {
+						$post_tags = '';
+					}
+					if ($post_tagsp == 1) {
+						$post_tagsp = '#ورزشی';
+					} else {
+						$post_tagsp = '';
+					}
+					if ($post_tage == 1) {
+						$post_tage = '#اقتصادی';
+					} else {
+						$post_tage = '';
+					}
+					if ($post_tagp == 1) {
+						$post_tagp = '#سیاسی';
+					} else {
+						$post_tagp = '';
+					}
 				?>
 
 
@@ -85,30 +107,16 @@ require './auth/checkAuth_handler.php';
 						<div class="container-main-posts-item_body">
 							<h3>نویسنده: <?php echo $post_author; ?></h3>
 							<p><?php limited_echo($post_content, 200); ?></p>
-							<h4 class="mt-3">تگ ها : <span><?php echo "#" . $post_tag1; ?>،</span> <span><?php echo "#" . $post_tag2; ?>،</span> <span><?php echo "#" . $post_tag3; ?></span> </h4>
+							<h4 class="mt-3">تگ ها : <span><?php echo  $post_tags; ?></span> <span><?php echo  $post_tagsp; ?></span> <span><?php echo  $post_tage; ?></span> <span><?php echo  $post_tagp; ?></span> </h4>
 						</div>
 						<div class="container-main-posts-item_footer">
-							<a href="?liked=<?php echo $post_id; ?>" onclick='increase()' class="container-main-posts-item_footer_icon">
 
+							<a class="container-main-posts-item_footer_icon" data-postid=<?php echo $post_id ?>>
 
-
-								<?php
-								like();
-								?>
-
-
-
-								<i class="fas fa-heart "></i><span>
-									<script>
-										increase()
-									</script>
-								</span>
-								<script>
-									function increase() {
-										return 3;
-									}
-								</script>
+								<i class="fas fa-heart "></i><span class="post-likes"><?php echo $post_likes; ?>
 							</a>
+
+
 							<a href="#" class="container-main-posts-item_footer_view-btn">مشاهده کامل</a>
 						</div>
 					</div>
@@ -129,25 +137,25 @@ require './auth/checkAuth_handler.php';
 						<li>
 							<label for="rememberMe" class="primary__checkbox">
 								<span>علمی</span>
-								<input type="checkbox" name="check_list[]" value="علمی">
+								<input type="checkbox" name="science" value="علمی">
 							</label>
 						</li>
 						<li>
 							<label for="rememberMe" class="primary__checkbox">
 								<span>ورزشی</span>
-								<input type="checkbox" name="check_list[]" value="ورزشی">
+								<input type="checkbox" name="sport" value="ورزشی">
 							</label>
 						</li>
 						<li>
 							<label for="rememberMe" class="primary__checkbox">
 								<span>اقتصادی</span>
-								<input type="checkbox" name="check_list[]" value="اقتصادی">
+								<input type="checkbox" name="econ" value="اقتصادی">
 							</label>
 						</li>
 						<li>
 							<label for="rememberMe" class="primary__checkbox">
 								<span>سیاسی</span>
-								<input type="checkbox" name="check_list[]" value="سیاسی">
+								<input type="checkbox" name="political" value="سیاسی">
 							</label>
 						</li>
 					</ul>
@@ -164,8 +172,12 @@ require './auth/checkAuth_handler.php';
 						<input type="text" name="title" class="primary-input">
 					</div>
 
-					<button type="submit" class="container-main-searchbox-form-submit" name="submit">جستجو</button>
+					<button type="submit" class="container-main-searchbox-form-submit" name="side_submit">جستجو</button>
 				</form>
+
+
+
+
 				<div class="container-main-searchbox-advertising">
 					تبلیغات
 				</div>

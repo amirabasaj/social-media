@@ -1,5 +1,13 @@
 <?php
 
+global $wanted_author;
+global $wanted_title;
+global $wanted_tags;
+global $wanted_tagsp;
+global $wanted_tage;
+global $wanted_tagp;
+global $flag;
+
 function confirmQuery($result)
 {
 	global $conn;
@@ -41,18 +49,26 @@ function separator($media)
 	}
 }
 
-function like(){
-	global $flag;
-	global $conn;
-	$selected_post_id =0;
-	if ($flag == 0) {
-		if (isset($_GET['liked'])) {
-			$selected_post_id = $_GET['liked'];
-		}
-
-		$query = "UPDATE posts SET likes = likes + 1	 WHERE post_id ={$selected_post_id} ";
-		$result = mysqli_query($conn, $query);
-		$flag += 1;
+function tag()
+{
+	if ($post_tags == 1) {
+		$post_tags = '#علمی';
+	} else {
+		$post_tags = '';
 	}
-
+	if ($post_tagsp == 1) {
+		$post_tagsp = '#ورزشی';
+	} else {
+		$post_tagsp = '';
+	}
+	if ($post_tage == 1) {
+		$post_tage = '#اقتصادی';
+	} else {
+		$post_tage = '';
+	}
+	if ($post_tagp == 1) {
+		$post_tagp = '#سیاسی';
+	} else {
+		$post_tagp = '';
+	}
 }
