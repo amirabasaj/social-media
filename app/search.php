@@ -68,16 +68,20 @@ require './auth/checkAuth_handler.php';
 					}
 					if (!empty($_POST['title'])) {
 						$wanted_title = $_POST['title'];
+					} else {
+						$wanted_title = 0;
 					}
 				}
-				echo  $wanted_tag1;
-
+				echo $wanted_title;
 				$i = 0;
 				$flag = 0;
 				$query = "SELECT * FROM posts WHERE 
 				(author = '$wanted_author') OR
-				(post_title LIKE '%$wanted_title%') OR
-				((s_tag = '$science_tag' ) OR (sp_tag ='$sport_tag') OR (e_tag ='$econ_tag =1' ) OR (p_tag ='$political_tag' ) ) ";
+				(post_title LIKE '$wanted_title%') OR
+				((s_tag = '$science_tag' ) OR
+				(sp_tag ='$sport_tag') OR
+				(e_tag ='$econ_tag =1' ) OR
+				(p_tag ='$political_tag' ) ) ";
 				$select_searched_for = mysqli_query($conn, $query);
 				while ($row = mysqli_fetch_assoc($select_searched_for)) {
 					$post_title = $row['post_title'];
