@@ -39,15 +39,22 @@ require './auth/checkAuth_handler.php';
 			$logged_in =  $_SESSION['login_username'];
 			// echo md5("123");
 			if (isset($_POST['pass_submit'])) {
-				if(empty($_POST['old-password']) || empty($_POST['new-password'])){
-				die("هیچ کدام از فیلد ها نمیتوانند خالی باشند") ;
-					
+				if (empty($_POST['old-password']) || empty($_POST['new-password'])) {
+					die("هیچ کدام از فیلد ها نمیتوانند خالی باشند");
 				}
 				$entered_old_pass = $_POST['old-password'];
 				$entered_old_pass = md5($entered_old_pass);
+
 				// echo $old_pass; 
-				
-				$new_pass =$_POST['new-password'];
+
+				$new_pass = $_POST['new-password'];
+				$new_pass = str_replace(' ', '', strip_tags($_POST['new-password']));
+				if (!preg_match('/^(?=.*[!@#$%^&*-])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/', $new_pass)) {
+					echo ("پسورد باید حداقل ۸ حرف لاتین شامل حداقل یک  حرف. بزرگ و حداقل یک حرف خاص باشد.");
+					echo "<br>";
+				}
+				// echo $new_pass;
+
 
 
 				$query = "SELECT password from users WHERE username = '$logged_in' ";
@@ -55,19 +62,18 @@ require './auth/checkAuth_handler.php';
 				$row = mysqli_fetch_array($result);
 				$user_old_pass = $row['password'];
 				//  echo $user_old_pass;
-			if(($user_old_pass == $entered_old_pass) ){
-				// echo $logged_in;
-				$new_pass =md5 ($new_pass);
-				// echo $new_pass;
-				$query = "UPDATE users SET password = '$new_pass' WHERE username = '$logged_in' ";
-				$update = mysqli_query ($conn , $query);
-				if (!$update){
-					die("FAILED" . mysqli_error($conn));
+				if (($user_old_pass == $entered_old_pass)) {
+					// echo $logged_in;
+					$new_pass = md5($new_pass);
+					// echo $new_pass;
+					$query = "UPDATE users SET password = '$new_pass' WHERE username = '$logged_in' ";
+					$update = mysqli_query($conn, $query);
+					if (!$update) {
+						die("FAILED" . mysqli_error($conn));
+					}
+				} else {
+					echo " رمز عبور درست نیست یا تکراری است";
 				}
-
-			}else{
-				echo "رمز عبور درست نیست";
-			}
 			}
 			?>
 
