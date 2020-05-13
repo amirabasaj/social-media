@@ -3,8 +3,9 @@
 session_start();
 require '../database/database.php';
 require './auth/checkAuth_handler.php';
+include 'function.php';
 
-
+global $logged_in;
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +38,7 @@ require './auth/checkAuth_handler.php';
 
 			<?php
 			$logged_in =  $_SESSION['login_username'];
-			// echo md5("123");
+			//  echo md5("123");
 			if (isset($_POST['pass_submit'])) {
 				if (empty($_POST['old-password']) || empty($_POST['new-password'])) {
 					die("هیچ کدام از فیلد ها نمیتوانند خالی باشند");
@@ -63,13 +64,15 @@ require './auth/checkAuth_handler.php';
 				$user_old_pass = $row['password'];
 				//  echo $user_old_pass;
 				if (($user_old_pass == $entered_old_pass)) {
-					// echo $logged_in;
+					//  echo $logged_in;
 					$new_pass = md5($new_pass);
 					// echo $new_pass;
 					$query = "UPDATE users SET password = '$new_pass' WHERE username = '$logged_in' ";
 					$update = mysqli_query($conn, $query);
 					if (!$update) {
 						die("FAILED" . mysqli_error($conn));
+					} else {
+						echo 'رمز عبور با موفقیت تغییر کرد';
 					}
 				} else {
 					echo " رمز عبور درست نیست یا تکراری است";
@@ -89,13 +92,43 @@ require './auth/checkAuth_handler.php';
 					<button class="change-info-form-submit_btn" name="pass_submit">تغییر رمز</button>
 				</div>
 			</form>
-			<form class="change-image-form">
+
+			<?php
+			if (isset($_POST['upload-image'])) {
+
+				$image_name = $_FILES['image']['name'];
+				$image_size = $_FILES['image']['size'];
+				$image_temp = $_FILES['image']['tmp_name'];
+				$image_type = $_FILES['image']['type'];
+				//  echo $image_name;
+
+				$check_image = separator($image_name);
+				if ($check_image !== 0) {
+					echo ("نوع فایل انتخاب شده قابل قبول نیست");
+				} elseif ($image_size > 4097152) {
+					echo "حجم فایل دریافت شده بیش از حجم مجاز است";
+				} else {
+					move_uploaded_file($image_temp, 'images/' . $image_name);
+					echo 'فایل با موفقیت دریافت شد';
+				}
+				// echo $logged_in;
+				$query = "UPDATE users set profile_pic = '$image_name'  
+				WHERE username = '$logged_in'  ";
+				$upload_picture = mysqli_query($conn , $query);
+			}
+
+
+			?>
+
+
+
+			<form class="change-image-form" action="user_profile.php" method="POST" enctype="multipart/form-data">
 				<div>
 					<input type="file" id="image-file" name="image" class="mt-2 mb-2">
 					<label for="image-file">انتخاب عکس</label>
 				</div>
 				<div class="change-image-form-submit">
-					<button class="change-image-form-submit_btn">تغییر عکس</button>
+					<button class="change-image-form-submit_btn" name="upload-image">تغییر عکس</button>
 				</div>
 			</form>
 		</div>

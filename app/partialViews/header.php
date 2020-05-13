@@ -15,7 +15,7 @@
 <header class="header">
 
     <div class="header-imgbox">
-        <img src="<?php echo $userPic ?>">
+        <img src="images/<?php echo $userPic ?>">
     </div>
     <form class="header-searchbox">
         <div class="header-searchbox-content">
