@@ -38,7 +38,7 @@ function separator($media)
 	$type = substr($media, strpos($media, '.') + 1);
 	$type = strtoupper($type);
 	$vFormat = array("AVI", "FLV", 'WMV', 'MP4', 'MOV', 'MKV');
-	$iFormat = array('JPEG', 'PNG', 'JPG', 'SVG', 'JFIF');
+	$iFormat = array('JPEG', 'PNG', 'JPG', 'SVG', 'JFIF', 'WEBP');
 
 	if (in_array($type, $iFormat)) {
 		return 0;
@@ -77,5 +77,33 @@ function change_pass()
 				die("FAILED" . mysqli_error($conn));
 			}
 		}
+	}
+}
+function chengeProfilePic()
+{
+	global $conn;
+	global $logged_in;
+	if (isset($_POST['upload-image'])) {
+
+		$image_name = $_FILES['image']['name'];
+		$image_size = $_FILES['image']['size'];
+		$image_temp = $_FILES['image']['tmp_name'];
+		$image_type = $_FILES['image']['type'];
+		//  echo $image_name;
+
+		$check_image = separator($image_name);
+		if ($check_image !== 0) {
+			echo "نوع فایل انتخاب شده قابل قبول نیست";
+		} elseif ($image_size > 4097152) {
+			echo "حجم فایل دریافت شده بیش از حجم مجاز است";
+		} else {
+			move_uploaded_file($image_temp, 'images/' . $image_name);
+			echo 'فایل با موفقیت دریافت شد';
+		}
+		// echo $logged_in;
+		$query = "UPDATE users set profile_pic = '$image_name'  
+	WHERE username = '$logged_in'  ";
+		$upload_picture = mysqli_query($conn, $query);
+		// header('Location : user_profile.php');
 	}
 }

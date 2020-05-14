@@ -94,30 +94,7 @@ global $logged_in;
 			</form>
 
 			<?php
-			if (isset($_POST['upload-image'])) {
-
-				$image_name = $_FILES['image']['name'];
-				$image_size = $_FILES['image']['size'];
-				$image_temp = $_FILES['image']['tmp_name'];
-				$image_type = $_FILES['image']['type'];
-				//  echo $image_name;
-
-				$check_image = separator($image_name);
-				if ($check_image !== 0) {
-					echo ("نوع فایل انتخاب شده قابل قبول نیست");
-				} elseif ($image_size > 4097152) {
-					echo "حجم فایل دریافت شده بیش از حجم مجاز است";
-				} else {
-					move_uploaded_file($image_temp, 'images/' . $image_name);
-					echo 'فایل با موفقیت دریافت شد';
-				}
-				// echo $logged_in;
-				$query = "UPDATE users set profile_pic = '$image_name'  
-				WHERE username = '$logged_in'  ";
-				$upload_picture = mysqli_query($conn , $query);
-			}
-
-
+			chengeProfilePic();
 			?>
 
 
@@ -132,54 +109,121 @@ global $logged_in;
 				</div>
 			</form>
 		</div>
-		<div class="profile-tab" id="see-statistics">
 
+
+		<div class="profile-tab" id="see-statistics">
 			<div class="see-statistics-box">
-				<div class="see-statistics-box-item">
-					<div class="see-statistics-box-item_header">
-						<video class="video-js" controls preload="auto" poster="../assets/img/login_register-background.jpg" data-setup="{}">
-							<source src="../assets/video/small.mp4" type="video/mp4" />
-						</video>
+
+				<?php
+
+				$query = "SELECT * FROM posts WHERE username = '$logged_in'";
+				$select_all_user_post = mysqli_query($conn, $query);
+				echo mysqli_error($conn);
+				while ($row = mysqli_fetch_assoc($select_all_user_post)) {
+					$post_title = $row['post_title'];
+					$post_username = $row['username'];
+					$post_tags = $row['s_tag'];
+					$post_tagsp = $row['sp_tag'];
+					$post_tage = $row['e_tag'];
+					$post_tagp = $row['p_tag'];
+					$post_content = $row['content'];
+					$post_likes = $row['likes'];
+					$post_media = $row['media'];
+					$post_id = $row['post_id'];
+					$post_comment_counter = $row['comment_counter'];
+
+					if ($post_tags == 1) {
+						$post_tags = '#علمی';
+					} else {
+						$post_tags = '';
+					}
+					if ($post_tagsp == 1) {
+						$post_tagsp = '#ورزشی';
+					} else {
+						$post_tagsp = '';
+					}
+					if ($post_tage == 1) {
+						$post_tage = '#اقتصادی';
+					} else {
+						$post_tage = '';
+					}
+					if ($post_tagp == 1) {
+						$post_tagp = '#سیاسی';
+					} else {
+						$post_tagp = '';
+					}
+
+
+
+
+				?>
+
+
+
+
+
+
+					<div class="see-statistics-box-item">
+						<div class="see-statistics-box-item_header">
+							<?php
+							switch (separator($post_media)) {
+								case 0:
+							?>
+									<img src="../assets/img/<?php echo $post_media ?>" class="container-main-posts-item_header_img">
+
+								<?php
+									break;
+								case 1:
+								?>
+									<video class="video-js" controls preload="auto" poster="../assets/img/login_register-background.jpg" data-setup="{}">
+										<source src="../assets/video/<?php echo $post_media ?>" type="video/mp4" />
+									</video>
+
+							<?php
+									break;
+								case -1:
+									echo "The Media format not recognized";
+									break;
+							}
+							?>
+						</div>
+						<div class="see-statistics-box-item_body">
+							<p><?php limited_echo($post_content, 200); ?></p>
+						</div>
+						<div class="see-statistics-box-item_footer">
+							<a><i class="fas fa-comment"></i><span class="mr-1"><?php echo $post_comment_counter; ?></span></a>
+							<a><i class="fas fa-heart"></i><span class="mr-1"><?php echo $post_likes; ?></span></a>
+							<a href="user_profile.php?delete=<?php echo $post_id ?>"><i class="fas fa-trash"></i></a>
+						</div>
+
 					</div>
-					<div class="see-statistics-box-item_body">
-						<p>الورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای گیرد.</p>
-					</div>
-					<div class="see-statistics-box-item_footer">
-						<a><i class="fas fa-comment"></i><span class="mr-1">2</span></a>
-						<a><i class="fas fa-heart"></i><span class="mr-1">3</span></a>
-						<a><i class="fas fa-trash"></i></a>
-					</div>
-				</div>
-				<div class="see-statistics-box-item">
-					<div class="see-statistics-box-item_header">
-						<img src="../assets/img/login_register-background.jpg">
-					</div>
-					<div class="see-statistics-box-item_body">
-						<p>الورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای گیرد.</p>
-					</div>
-					<div class="see-statistics-box-item_footer">
-						<a><i class="fas fa-comment"></i><span class="mr-1">2</span></a>
-						<a><i class="fas fa-heart"></i><span class="mr-1">3</span></a>
-						<a><i class="fas fa-trash"></i></a>
-					</div>
-				</div>
-				<div class="see-statistics-box-item">
-					<div class="see-statistics-box-item_header">
-						<video class="video-js" controls preload="auto" poster="../assets/img/login_register-background.jpg" data-setup="{}">
-							<source src="../assets/video/small.mp4" type="video/mp4" />
-						</video>
-					</div>
-					<div class="see-statistics-box-item_body">
-						<p>الورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای گیرد.</p>
-					</div>
-					<div class="see-statistics-box-item_footer">
-						<a><i class="fas fa-comment"></i><span class="mr-1">2</span></a>
-						<a><i class="fas fa-heart"></i><span class="mr-1">3</span></a>
-						<a><i class="fas fa-trash"></i></a>
-					</div>
-				</div>
+				<?php } ?>
+
 			</div>
+
 		</div>
+
+		</div>
+
+		</div>
+		<?php
+		if (isset($_GET['delete'])) {
+			$delete_id = $_GET['delete'];
+
+
+			$query = "DELETE FROM posts WHERE post_id ='$delete_id' AND username = '$logged_in' ";
+			$delete_post = mysqli_query($conn, $query);
+			echo mysqli_error($conn);
+			$_GET['delete'] = '';
+		}
+
+		?>
+
+
+
+
+
+
 		<div class="profile-tab" id="add-post">
 
 			<div class="add-post-box">
@@ -193,8 +237,8 @@ global $logged_in;
 						<label for="post-file" class="image-label mt-2 mb-5">انتخاب عکس</label>
 					</div>
 
-					<textarea name="message" id="myEditor" rows="10" cols="80">
-                     متن پست خود را وارد کنید...
+					<textarea name="message" id="myEditor" rows="10" cols="80" placeholder="متن پست خود را وارد کنید...">
+
                 </textarea>
 					<script>
 						CKEDITOR.replace('myEditor');

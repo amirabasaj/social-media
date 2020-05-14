@@ -68,4 +68,3 @@
     else{
         header("Location:$http://$_SERVER[HTTP_HOST]/app/auth/login_register.php");
     }
-?>
