@@ -53,29 +53,27 @@ global $logged_in;
 				if (!preg_match('/^(?=.*[!@#$%^&*-])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/', $new_pass)) {
 					echo ("پسورد باید حداقل ۸ حرف لاتین شامل حداقل یک  حرف. بزرگ و حداقل یک حرف خاص باشد.");
 					echo "<br>";
-				}
-				// echo $new_pass;
-
-
-
-				$query = "SELECT password from users WHERE username = '$logged_in' ";
-				$result = mysqli_query($conn, $query);
-				$row = mysqli_fetch_array($result);
-				$user_old_pass = $row['password'];
-				//  echo $user_old_pass;
-				if (($user_old_pass == $entered_old_pass)) {
-					//  echo $logged_in;
-					$new_pass = md5($new_pass);
-					// echo $new_pass;
-					$query = "UPDATE users SET password = '$new_pass' WHERE username = '$logged_in' ";
-					$update = mysqli_query($conn, $query);
-					if (!$update) {
-						die("FAILED" . mysqli_error($conn));
-					} else {
-						echo 'رمز عبور با موفقیت تغییر کرد';
-					}
 				} else {
-					echo " رمز عبور درست نیست یا تکراری است";
+					// echo $new_pass;
+					$query = "SELECT password from users WHERE username = '$logged_in' ";
+					$result = mysqli_query($conn, $query);
+					$row = mysqli_fetch_array($result);
+					$user_old_pass = $row['password'];
+					//  echo $user_old_pass;
+					if (($user_old_pass == $entered_old_pass)) {
+						//  echo $logged_in;
+						$new_pass = md5($new_pass);
+						// echo $new_pass;
+						$query = "UPDATE users SET password = '$new_pass' WHERE username = '$logged_in' ";
+						$update = mysqli_query($conn, $query);
+						if (!$update) {
+							die("FAILED" . mysqli_error($conn));
+						} else {
+							echo 'رمز عبور با موفقیت تغییر کرد';
+						}
+					} else {
+						echo " رمز عبور درست نیست ";
+					}
 				}
 			}
 			?>
