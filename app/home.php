@@ -41,7 +41,7 @@ require './auth/checkAuth_handler.php';
 				$select_all_posts = mysqli_query($conn, $query);
 				while ($row = mysqli_fetch_assoc($select_all_posts)) {
 					$post_title = $row['post_title'];
-					$post_author = $row['author'];
+					$post_username = $row['username'];
 					$post_tags = $row['s_tag'];
 					$post_tagsp = $row['sp_tag'];
 					$post_tage = $row['e_tag'];
@@ -105,7 +105,7 @@ require './auth/checkAuth_handler.php';
 
 						</div>
 						<div class="container-main-posts-item_body">
-							<h3>نویسنده: <?php echo $post_author; ?></h3>
+							<h3>نویسنده: <?php echo $post_username; ?></h3>
 							<p><?php limited_echo($post_content, 200); ?></p>
 							<h4 class="mt-3">تگ ها : <span><?php echo  $post_tags; ?></span> <span><?php echo  $post_tagsp; ?></span> <span><?php echo  $post_tage; ?></span> <span><?php echo  $post_tagp; ?></span> </h4>
 						</div>
