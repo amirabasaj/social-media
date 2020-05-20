@@ -30,7 +30,7 @@ global $logged_in;
 	<?php require './partialViews/header.php'; ?>
 	<section class="profile">
 		<ul class="profile-tab-nav">
-			<li><a class="active" href="#" data-box="change-info">تغیر اطلاعات</a></li>
+			<li><a class="active" href="#" data-box="change-info">تغییر اطلاعات</a></li>
 			<li><a href="#" data-box="see-statistics">مشاهده پست ها</a></li>
 			<li><a href="#" data-box="add-post">افزودن پست جدید</a></li>
 		</ul>
@@ -91,7 +91,7 @@ global $logged_in;
 				</div>
 			</form>
 
-			<form class="change-image-form" action="photo_change.php" method="POST" enctype="multipart/form-data">
+			<form class="change-image-form" action="includes/photo_change.php" method="POST" enctype="multipart/form-data">
 				<div>
 					<input type="file" id="image-file" name="image" class="mt-2 mb-2">
 					<label for="image-file">انتخاب عکس</label>
@@ -149,12 +149,6 @@ global $logged_in;
 
 
 				?>
-
-
-
-
-
-
 					<div class="see-statistics-box-item">
 						<div class="see-statistics-box-item_header">
 							<?php
@@ -185,7 +179,10 @@ global $logged_in;
 						<div class="see-statistics-box-item_footer">
 							<a><i class="fas fa-comment"></i><span class="mr-1"><?php echo $post_comment_counter; ?></span></a>
 							<a><i class="fas fa-heart"></i><span class="mr-1"><?php echo $post_likes; ?></span></a>
-							<a href="user_profile.php?delete=<?php echo $post_id ?>"><i class="fas fa-trash"></i></a>
+							<form action="includes/delete_post.php" method="post">
+								<input style="display: none" type="text" name="wanted_id" value=<?php echo $post_id ?>>
+								<button name="submit" type="submit"><a><i class="fas fa-trash"></i></a></button>
+							</form>
 						</div>
 
 					</div>
@@ -198,79 +195,14 @@ global $logged_in;
 		</div>
 
 		</div>
-		<?php
-		// if (isset($_GET['delete'])) {
-		// 	$delete_id = $_GET['delete'];
 
-
-		// 	$query = "DELETE FROM posts WHERE post_id ='$delete_id' AND username = '$logged_in' ";
-		// 	$delete_post = mysqli_query($conn, $query);
-		// 	echo mysqli_error($conn);
-		// 	$_GET['delete'] = '';
-		// }
-
-		?>
 
 
 		<div class="profile-tab" id="add-post">
 
 			<div class="add-post-box">
-				<?php
-
-				// if (isset($_POST['add_post'])) {
-
-				// 	$new_post_title = $_POST['post_title'];
-				// 	$new_image_name = $_FILES["image"]['name'];
-				// 	$new_image_size = $_FILES['image']['size'];
-				// 	$new_image_temp = $_FILES['image']['tmp_name'];
-				// 	$new_image_type = $_FILES['image']['type'];
-				// 	$new_post_content = $_POST['post_content'];
-				// 	$new_post_tags = $_POST['tags'];
-				// 	if (!empty($new_post_tags)) {
-				// 		$elmi = 0;
-				// 		$varzeshi = 0;
-				// 		$eghtesadi = 0;
-				// 		$siyasi = 0;
-
-				// 		if (in_array("elmi", $new_post_tags)) {
-				// 			$elmi = 1;
-				// 		}
-				// 		if (in_array("varzeshi", $new_post_tags)) {
-				// 			$varzeshi = 1;
-				// 		}
-				// 		if (in_array("eghtesadi", $new_post_tags)) {
-				// 			$eghtesadi = 1;
-				// 		}
-				// 		if (in_array("siyasi", $new_post_tags)) {
-				// 			$siyasi = 1;
-				// 		}
-				// 		// echo "elmi" . $elmi;
-				// 		// echo "varzeshi" . $varzeshi;
-				// 		// echo "eghtesadi" . $eghtesadi;
-				// 		// echo "siyasi" . $siyasi;
-				// 		// echo $logged_in;
-				// 	}
-				// 	if (empty($new_post_title)) {
-				// 		echo "تیتر پست نمیتواند خالی باشد";
-				// 	} elseif ($new_image_size !== 0) {
-				// 		$check_image = separator($new_image_name);
-				// 		if ($check_image !== 0) {
-				// 			echo "نوع فایل انتخاب شده قابل قبول نیست";
-				// 		} elseif ($new_image_size > 4097152) {
-				// 			echo "حجم فایل دریافت شده بیش از حجم مجاز است";
-				// 		} else {
-				// 			move_uploaded_file($new_image_temp, 'new_post_image/' . $new_image_name);
-				// 		}
-				// 	}
-
-				// 	$query = "INSERT INTO posts(post_title , username , s_tag , sp_tag , e_tag , p_tag ,content , media) VALUES ('$new_post_title' ,'$logged_in' ,'$elmi', '$varzeshi', '$eghtesadi' , '$siyasi', '$new_post_content' , '$new_image_name')";
-				// 	$insert_post = mysqli_query($conn, $query);
-				// 	if (!$insert_post) echo ("FAILED" . mysqli_error($conn));
-				// }
-
-
-				?>
-				<form class="add-post-box-form" method="post" action="user_profile.php" enctype="multipart/form-data">
+			
+				<form class="add-post-box-form" method="post" action="includes/add_post.php" enctype="multipart/form-data">
 
 					<label for="title">سر تیتر</label>
 					<input placeholder="تیتر پست را وارد کنید..." type="text" name="post_title" class="primary-input mt-1 mb-5">

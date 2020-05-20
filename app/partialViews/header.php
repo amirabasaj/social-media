@@ -40,7 +40,7 @@ if (mysqli_num_rows($res) == 1) {
 		<a href="home.php" class="header-operation_users">
 			<i class="fa fa-users fa-3x"></i>
 		</a>
-		<a href="home.php" class="header-operation_cog">
+		<a href="user_profile.php" class="header-operation_cog">
 			<i class="fa fa-cog fa-3x"></i>
 		</a>
 	</div>
