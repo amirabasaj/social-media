@@ -56,15 +56,15 @@
                 $_SESSION['reg_username']='';
                 $_SESSION['reg_email']='';
                 $_SESSION['login_username']=$reg_username;
-                header("Location:$http://$_SERVER[HTTP_HOST]/app/home.php");
+                header("Location:$http://$_SERVER[HTTP_HOST]/social-media/app/home.php");
             }
         }
         else{
 
             $_SESSION['errors_array']=$errors_array;
-            header("Location:$http://$_SERVER[HTTP_HOST]/app/auth/login_register.php");
+            header("Location:$http://$_SERVER[HTTP_HOST]/social-media/app/auth/login_register.php");
         }
     }
     else{
-        header("Location:$http://$_SERVER[HTTP_HOST]/app/auth/login_register.php");
+        header("Location:$http://$_SERVER[HTTP_HOST]/social-media/app/auth/login_register.php");
     }

@@ -1,5 +1,4 @@
  <?php
-	ob_start();
 	session_start();
 	require '../../database/database.php';
 	require './checkAuth_handler.php';

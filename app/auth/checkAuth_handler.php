@@ -1,5 +1,4 @@
 <?php
- ob_start();
  $http=(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http");
   $actual_link = $http. "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
   
@@ -15,8 +14,8 @@
 }
 
 if(isset($_COOKIE['remember_me']) && !empty($_COOKIE['remember_me'])){
-    if($actual_link==$http."://".$_SERVER['HTTP_HOST']."/app/auth/login_register.php"){
-        header("Location:".$http."://".$_SERVER['HTTP_HOST']."/app/home.php");
+    if($actual_link==$http."://".$_SERVER['HTTP_HOST']."/social-media/app/auth/login_register.php"){
+        header("Location:".$http."://".$_SERVER['HTTP_HOST']."/social-media/app/home.php");
     } 
     $user=decryptCookie($_COOKIE['remember_me']);
     $res=mysqli_query($conn,"SELECT username,email FROM users WHERE username='$user'");
@@ -32,16 +31,13 @@ if(isset($_COOKIE['remember_me']) && !empty($_COOKIE['remember_me'])){
 else if(isset($_SESSION['login_username']) && !empty($_SESSION['login_username']))
 {
     
-    if($actual_link==$http."://".$_SERVER['HTTP_HOST']."/app/auth/login_register.php"){
-        header("Location:".$http."://".$_SERVER['HTTP_HOST']."/app/home.php");
+    if($actual_link==$http."://".$_SERVER['HTTP_HOST']."/social-media/app/auth/login_register.php"){
+        header("Location:".$http."://".$_SERVER['HTTP_HOST']."/social-media/app/home.php");
     } 
     
 }
 else{
-    if($actual_link!=$http."://".$_SERVER['HTTP_HOST']."/app/auth/login_register.php"){
-        header("Location:".$http."://".$_SERVER['HTTP_HOST']."/app/auth/login_register.php");
+    if($actual_link!=$http."://".$_SERVER['HTTP_HOST']."/social-media/app/auth/login_register.php"){
+        header("Location:".$http."://".$_SERVER['HTTP_HOST']."/social-media/app/auth/login_register.php");
     } 
 }
-
-
-ob_end_clean();

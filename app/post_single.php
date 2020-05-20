@@ -14,10 +14,10 @@ require './auth/checkAuth_handler.php';
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>پست</title>
-	<link rel="stylesheet" href="../../assets/css/post_single.css">
-	<link rel="stylesheet" href="../../assets/fonts/font-awesome/all.min.css">
-	<link href="../../assets/videojs/video-js.css" rel="stylesheet" />
-	<script src="../../assets/videojs/videojs-ie8.min.js"></script>
+	<link rel="stylesheet" href="../assets/css/post_single.css">
+	<link rel="stylesheet" href="../assets/fonts/font-awesome/all.min.css">
+	<link href="../assets/videojs/video-js.css" rel="stylesheet" />
+	<script src="../assets/videojs/videojs-ie8.min.js"></script>
 
 </head>
 
@@ -72,8 +72,8 @@ require './auth/checkAuth_handler.php';
 		</div>
 	</section>
 
-	<script src="../../assets/fonts/font-awesome/all.min.js"></script>
-	<script src="../../assets/videojs/video.js"></script>
+	<script src="../assets/fonts/font-awesome/all.min.js"></script>
+	<script src="../assets/videojs/video.js"></script>
 </body>
 
 </html>

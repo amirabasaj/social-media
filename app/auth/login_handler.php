@@ -65,5 +65,5 @@
         echo json_encode($jsonResponse);
     }
     else{
-        header("Location:$http://$_SERVER[HTTP_HOST]/app/auth/login_register.php");
+        header("Location:$http://$_SERVER[HTTP_HOST]/social-media/app/auth/login_register.php");
     }
