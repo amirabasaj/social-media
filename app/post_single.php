@@ -3,7 +3,7 @@ session_start();
 ob_start();
 
 require '../database/database.php';
-require './auth/checkAuth_handler.php';
+// require './auth/checkAuth_handler.php';
 ?>
 <?php include "function.php" ?>
 
@@ -28,46 +28,117 @@ require './auth/checkAuth_handler.php';
 
 	?>
 
+	<?php
+	global $logged_in;
+	$logged_in = $_SESSION['login_username'];
+	if (isset($_GET['id'])) {
+		$clicked_post = $_GET['id'];
+	}
+
+	$query = "SELECT * FROM posts WHERE post_id = '$clicked_post'";
+	$single_post = mysqli_query($conn, $query);
+	while ($row = mysqli_fetch_assoc($single_post)) {
+
+		$post_title = $row['post_title'];
+		$post_username = $row['username'];
+		$post_tags = $row['s_tag'];
+		$post_tagsp = $row['sp_tag'];
+		$post_tage = $row['e_tag'];
+		$post_tagp = $row['p_tag'];
+		$post_content = $row['content'];
+		$post_likes = $row['likes'];
+		$post_media = $row['media'];
+		$post_id = $row['post_id'];
+		$post_comment_counter = $row['comment_counter'];
+
+		if ($post_tags == 1) {
+			$post_tags = '#علمی';
+		} else {
+			$post_tags = '';
+		}
+		if ($post_tagsp == 1) {
+			$post_tagsp = '#ورزشی';
+		} else {
+			$post_tagsp = '';
+		}
+		if ($post_tage == 1) {
+			$post_tage = '#اقتصادی';
+		} else {
+			$post_tage = '';
+		}
+		if ($post_tagp == 1) {
+			$post_tagp = '#سیاسی';
+		} else {
+			$post_tagp = '';
+		}
+	}
+	?>
+
 	<section class="container">
 		<div class="container-post-item">
 			<div class="container-post-item_header">
-				<!-- <img src="../assets/img/login_register-background.jpg" class="container-post-item_header_img"> -->
-				<video class="video-js" controls preload="auto" poster="../assets/img/login_register-background.jpg" data-setup="{}">
-					<source src="../assets/video/small.mp4" type="video/mp4" />
-				</video>
+
+				<?php
+				switch (separator($post_media)) {
+					case 0:
+				?>
+						<img src="../assets/img/<?php echo $post_media ?>" class="container-main-posts-item_header_img">
+
+					<?php
+						break;
+					case 1:
+					?>
+						<video class="video-js" controls preload="auto" poster="../assets/img/login_register-background.jpg" data-setup="{}">
+							<source src="../assets/video/<?php echo $post_media ?>" type="video/mp4" />
+						</video>
+
+				<?php
+						break;
+					case -1:
+						echo "The Media format not recognized";
+						break;
+				}
+				?>
 			</div>
 			<div class="container-post-item_body">
-				<h3>نویسنده:</h3>
-				<p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
-				<h4 class="mt-3">تگ ها :</h4>
+				<h3>تیتر: <?php echo $post_title ?></h3>
+				<p><?php echo $post_content ?></p>
+				<h4 class="mt-3">تگ ها : <span><?php echo  $post_tags; ?></span> <span><?php echo  $post_tagsp; ?></span> <span><?php echo  $post_tage; ?></span> <span><?php echo  $post_tagp; ?></span></h4>
 			</div>
 			<div class="container-post-item-addcomment">
 				<h4 class="mb-3 mt-2">کامنت بذارید:</h4>
-				<form>
-					<textarea name="message" rows="10">متن کامنت را وارد کنید...</textarea>
+				<form action="includes/add_comment.php" method="POST">
+					<input style="display: none" name="clicked_post" type="text" value=<?php echo $clicked_post ?>>
+					<textarea name="comment" rows="10">متن کامنت را وارد کنید...</textarea>
 					<div class="container-post-item-addcomment_btn">
-						<button type="submit">ثبت</button>
+						<button type="submit" name="add_comment">ثبت</button>
 					</div>
 				</form>
 			</div>
+
+
 			<div class="container-post-item-comments">
 				<h4 class="mb-3 mt-2">کامنت ها:</h4>
-				<div class="container-post-item-comments_item">
-					<div class="container-post-item-comments_item_counter">1</div>
-					<h4>علی عباسی میگه:</h4>
-					<p>
-						لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود
+				<?php
 
-					</p>
-				</div>
-				<div class="container-post-item-comments_item">
-					<div class="container-post-item-comments_item_counter">100</div>
-					<h4>علی عباسی میگه:</h4>
-					<p>
-						لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود
+				$query = "SELECT * FROM comments WHERE post_id = '$clicked_post' ";
+				$show_comments = mysqli_query($conn, $query);
+				if (!$show_comments) die("FAILED" . mysqli_error($conn));
+				
+				for ($i = 1; $row = mysqli_fetch_assoc($show_comments); $i++) {
+					$username = $row['username'];
+					$comment = $row['comment'];
 
-					</p>
-				</div>
+				?>
+					<div class="container-post-item-comments_item">
+
+						<div class="container-post-item-comments_item_counter"><?php echo $i ?></div>
+						<h4><?php echo $username ?> میگه:</h4>
+						<p>
+							<?php echo $comment ?>
+						</p>
+					</div>
+				<?php } ?>
 			</div>
 		</div>
 	</section>

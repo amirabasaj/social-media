@@ -14,7 +14,7 @@ if (mysqli_num_rows($res) == 1) {
 <header class="header">
 
 	<div class="header-imgbox">
-		<img src="images/<?php echo $userPic ?>">
+		<img src="<?php echo $userPic ?>">
 	</div>
 	<form class="header-searchbox">
 		<div class="header-searchbox-content">

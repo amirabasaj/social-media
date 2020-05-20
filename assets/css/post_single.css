@@ -195,7 +195,7 @@ body {
       object-fit: cover;
       max-height: 350px;
       border-bottom: 2px solid #ec8b4a; }
-    .container-post-item_header_img {
+    .container-post-item_header img {
       width: 100%;
       object-fit: cover;
       max-height: 350px;

@@ -7,6 +7,7 @@ if (!isset($_SESSION)) {
 }
 global $conn;
 global $logged_in;
+
 $logged_in =  $_SESSION['login_username'];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (isset($_POST['submit'])) {

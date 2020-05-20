@@ -155,13 +155,13 @@ global $logged_in;
 							switch (separator($post_media)) {
 								case 0:
 							?>
-									<img src="../assets/img/<?php echo $post_media ?>" class="container-main-posts-item_header_img">
+									<a href="post_single.php?id=<?php echo $post_id ?>"><img src="../assets/img/<?php echo $post_media ?>" class="container-main-posts-item_header_img"></a>
 
 								<?php
 									break;
 								case 1:
 								?>
-									<video class="video-js" controls preload="auto" poster="../assets/img/login_register-background.jpg" data-setup="{}">
+									<a href="post_single.php?id=<?php echo $post_id ?>"><video class="video-js" controls preload="auto" poster="../assets/img/login_register-background.jpg" data-setup="{}"></a>
 										<source src="../assets/video/<?php echo $post_media ?>" type="video/mp4" />
 									</video>
 
