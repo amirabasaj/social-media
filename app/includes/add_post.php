@@ -8,6 +8,7 @@ if (!isset($_SESSION)) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (isset($_POST['add_post'])) {
 		$logged_in =  $_SESSION['login_username'];
+		$_SESSION['user_profile']['add post'] = "";
 
 		$new_post_title = $_POST['post_title'];
 		$new_image_name = $_FILES["image"]['name'];
@@ -41,21 +42,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			// echo $logged_in;
 		}
 		if (empty($new_post_title)) {
-			echo "تیتر پست نمیتواند خالی باشد";
+		
+			$_SESSION['user_profile']['add post'] = "تیتر پست نمیتواند خالی باشد";
 		} elseif ($new_image_size !== 0) {
 			$check_image = separator($new_image_name);
 			if ($check_image !== 0) {
-				echo "نوع فایل انتخاب شده قابل قبول نیست";
+
+				$_SESSION['user_profile']['add post'] = "نوع فایل انتخاب شده قابل قبول نیست";
 			} elseif ($new_image_size > 4097152) {
-				echo "حجم فایل دریافت شده بیش از حجم مجاز است";
+				$_SESSION['user_profile']['add post'] = "حجم فایل دریافت شده بیش از حجم مجاز است";
 			} else {
-				move_uploaded_file($new_image_temp, '../../assets/img/' . $new_image_name);
+				move_uploaded_file($new_image_temp, '../app/images/' . $new_image_name);
+				$query = "INSERT INTO posts(post_title , username , s_tag , sp_tag , e_tag , p_tag ,content , media) VALUES ('$new_post_title' ,'$logged_in' ,'$elmi', '$varzeshi', '$eghtesadi' , '$siyasi', '$new_post_content' , '$new_image_name')";
+				$insert_post = mysqli_query($conn, $query);
+				if (!$insert_post) echo ("FAILED" . mysqli_error($conn));
 			}
 		}
 
-		$query = "INSERT INTO posts(post_title , username , s_tag , sp_tag , e_tag , p_tag ,content , media) VALUES ('$new_post_title' ,'$logged_in' ,'$elmi', '$varzeshi', '$eghtesadi' , '$siyasi', '$new_post_content' , '$new_image_name')";
-		$insert_post = mysqli_query($conn, $query);
-		if (!$insert_post) echo ("FAILED" . mysqli_error($conn));
+		
 	}
-	header("Location:$http://$_SERVER[HTTP_HOST]/social-media/app/user_profile.php");
+	$userid = $_SESSION['login_username'] ;
+	header("Location:$http://$_SERVER[HTTP_HOST]/social-media/app/user_profile.php?userid=$userid");
 }

@@ -20,5 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		// $_GET['delete'] = '';
 		// }
 	}
-	header("Location:$http://$_SERVER[HTTP_HOST]/social-media/app/user_profile.php");
+	$userid = $_SESSION['login_username'] ;
+	header("Location:$http://$_SERVER[HTTP_HOST]/social-media/app/user_profile.php?userid=$userid");
 }

@@ -14,7 +14,7 @@ if (mysqli_num_rows($res) == 1) {
 <header class="header">
 
 	<div class="header-imgbox">
-		<img src="<?php echo $userPic ?>">
+		<img src="../app/images/<?php echo $userPic ?>">
 	</div>
 	<form class="header-searchbox">
 		<div class="header-searchbox-content">
@@ -40,7 +40,7 @@ if (mysqli_num_rows($res) == 1) {
 		<a href="home.php" class="header-operation_users">
 			<i class="fa fa-users fa-3x"></i>
 		</a>
-		<a href="user_profile.php" class="header-operation_cog">
+		<a href="user_profile.php?userid=<?php echo $_SESSION['login_username'] ?>" class="header-operation_cog">
 			<i class="fa fa-cog fa-3x"></i>
 		</a>
 	</div>

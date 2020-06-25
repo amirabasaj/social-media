@@ -9,7 +9,7 @@ postLikesBtn.forEach((postLike) => {
 function handleClickLike() {
 	const postId = this.dataset.postid;
 
-	fetch('../../app/controllers/increment_like.php', {
+	fetch('../../social-media/app/controllers/increment_like.php', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -22,7 +22,6 @@ function handleClickLike() {
 			return data.json();
 		})
 		.then((res) => {
-			console.log(res);
 			if (res.success === 'YES') {
 				const span = this.querySelector('.post-likes');
 				let value = parseInt(span.textContent);

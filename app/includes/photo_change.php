@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	global $conn;
 	global $logged_in;
+	$_SESSION['user_profile']['change_pic'] = "";
 	$logged_in =  $_SESSION['login_username'];
 	// echo $logged_in;
 	if (isset($_POST['upload-image'])) {
@@ -24,18 +25,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		$check_image = separator($image_name);
 		if ($check_image !== 0) {
-			echo "نوع فایل انتخاب شده قابل قبول نیست";
+			
+			$_SESSION['user_profile']['change_pic'] = "نوع فایل انتخاب شده قابل قبول نیست";
 		} elseif ($image_size > 4097152) {
-			echo "حجم فایل دریافت شده بیش از حجم مجاز است";
+			$_SESSION['user_profile']['change_pic'] = "حجم فایل دریافت شده بیش از حجم مجاز است";
 		} else {
-			move_uploaded_file($image_temp, '../images/' . $image_name);
-			echo 'فایل با موفقیت دریافت شد';
+			move_uploaded_file($image_temp, '../app/images/' . $image_name);
+			$query = "UPDATE users set profile_pic = '$image_name'  
+			WHERE username = '$logged_in'  ";
+			$upload_picture = mysqli_query($conn, $query);
 		}
-		// echo $logged_in;
-		$query = "UPDATE users set profile_pic = '$image_name'  
-		WHERE username = '$logged_in'  ";
-		$upload_picture = mysqli_query($conn, $query);
 		// if (!$upload_picture) echo mysqli_error($conn);
-		header("Location:$http://$_SERVER[HTTP_HOST]/social-media/app/user_profile.php");
+		 $userid = $_SESSION['login_username'] ;
+		header("Location:$http://$_SERVER[HTTP_HOST]/social-media/app/user_profile.php?userid=$userid");
 	}
 }

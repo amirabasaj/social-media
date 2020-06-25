@@ -42,9 +42,9 @@ if (isset($_POST['register']) && isset($_POST['reg_username']) && isset($_POST['
 		$date = date('Y-m-d');
 		if ($gender == 'male') {
 			$gender = 0;
-			$userPic = '/social-media/app/images/user-male.jpg';
+			$userPic = '../images/user-male.jpg';
 		} else {
-			$userPic = '/social-media/app/images/user-female.jpg';
+			$userPic = '../images/user-female.jpg';
 			$gender = 1;
 		}
 

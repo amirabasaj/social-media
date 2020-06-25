@@ -104,7 +104,7 @@ require './auth/checkAuth_handler.php';
 
 						</div>
 						<div class="container-main-posts-item_body">
-							<h3>نویسنده: <?php echo $post_username; ?></h3>
+							<a href="user_profile.php?userid=<?php echo $post_username; ?>" <h3>نویسنده: <?php echo $post_username; ?></h3></a>
 							<p><?php limited_echo($post_content, 200); ?></p>
 							<h4 class="mt-3">تگ ها : <span><?php echo  $post_tags; ?></span> <span><?php echo  $post_tagsp; ?></span> <span><?php echo  $post_tage; ?></span> <span><?php echo  $post_tagp; ?></span> </h4>
 						</div>
@@ -116,7 +116,7 @@ require './auth/checkAuth_handler.php';
 							</a>
 
 
-							<a href="#" class="container-main-posts-item_footer_view-btn">مشاهده کامل</a>
+							<a href="post_single?" class="container-main-posts-item_footer_view-btn">مشاهده کامل</a>
 						</div>
 					</div>
 
