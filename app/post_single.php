@@ -143,8 +143,10 @@ require '../database/database.php';
 		</div>
 	</section>
 
+	<script src="../assets/js/jquery-3.4.1.min.js"></script>
 	<script src="../assets/fonts/font-awesome/all.min.js"></script>
 	<script src="../assets/videojs/video.js"></script>
+	<script src="../assets/js/header.js"></script>
 </body>
 
 </html>

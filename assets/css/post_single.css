@@ -127,6 +127,61 @@ body {
     color: whitesmoke; }
     .header-operation a:hover {
       color: #dddbdb; }
+  .header-operation_bell {
+    position: relative;
+    cursor: pointer; }
+    .header-operation_bell_notif-count {
+      position: absolute;
+      border-radius: 50%;
+      cursor: auto;
+      top: -15px;
+      left: -5px;
+      font-size: 1.2rem;
+      background: red; }
+    .header-operation_bell .header-operation-request-box {
+      z-index: 2;
+      cursor: auto;
+      display: none;
+      height: 95px;
+      overflow: auto;
+      background-color: black;
+      color: white;
+      font-size: 1.2rem;
+      border-radius: 5px;
+      position: absolute;
+      top: 100%;
+      left: 0; }
+      .header-operation_bell .header-operation-request-box ul {
+        list-style: none; }
+        .header-operation_bell .header-operation-request-box ul li:not(:last-child) {
+          border-bottom: 2px solid white;
+          margin-bottom: 5px; }
+        .header-operation_bell .header-operation-request-box ul li {
+          display: flex;
+          padding: 5px;
+          direction: ltr; }
+          .header-operation_bell .header-operation-request-box ul li img {
+            width: 32px;
+            display: inline-block;
+            height: 32px;
+            margin-right: 5px;
+            border-radius: 50%;
+            border: 2px solid white; }
+          .header-operation_bell .header-operation-request-box ul li span {
+            align-self: center; }
+          .header-operation_bell .header-operation-request-box ul li div {
+            margin-left: 10px;
+            display: flex;
+            align-self: center; }
+            .header-operation_bell .header-operation-request-box ul li div form button {
+              background: transparent;
+              border: none;
+              margin: 0 5px;
+              cursor: pointer; }
+              .header-operation_bell .header-operation-request-box ul li div form button .fa-check-circle {
+                color: #219221; }
+              .header-operation_bell .header-operation-request-box ul li div form button .fa-times-circle {
+                color: red; }
   .header-searchbox {
     flex-basis: 30%; }
     .header-searchbox-content {

@@ -103,13 +103,26 @@
 
   .see-statistics-box {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
     background-color: white;
     &-item {
-      flex-basis: 33%;
-      align-self: flex-start;
+      flex-basis: 30%;
+
+      @media (max-width: 678px) {
+        flex-basis: 40%;
+      }
+      @media (max-width: 550px) {
+        flex-basis: 100%;
+      }
+      align-self: stretch;
       border: 2px solid $color-gray;
       border-radius: 5px;
+      margin-bottom: 20px;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
       &:not(:last-child) {
         margin-left: 1rem;
       }
@@ -137,6 +150,7 @@
       &_footer {
         display: flex;
         padding: 1rem;
+        margin-top: auto;
         align-items: center;
         justify-content: space-between;
         & > a {
@@ -144,6 +158,11 @@
           align-items: center;
           align-self: center;
           cursor: pointer;
+        }
+        button {
+          border: none;
+          cursor: pointer;
+          background: transparent;
         }
         svg.fa-trash {
           color: rgb(236, 139, 74);
@@ -175,6 +194,152 @@
         border-radius: 5px;
         &:hover {
           background-color: $color-primary-light;
+        }
+      }
+    }
+  }
+
+  .request-box {
+    text-align: center;
+    margin-bottom: 30px;
+    &_btn_pending {
+      width: 100%;
+      background-color: rgb(236, 236, 52);
+      color: black;
+      border: none;
+      padding: 1.2rem 1.4rem;
+      border-radius: 5px;
+      display: inline-block;
+      cursor: pointer;
+    }
+    &_btn_pending:hover {
+      background-color: rgb(223, 223, 33);
+    }
+    &_btn_follow {
+      width: 100%;
+      background-color: rgb(34, 145, 34);
+      color: white;
+      border: none;
+      padding: 1.2rem 1.4rem;
+      border-radius: 5px;
+      display: inline-block;
+      cursor: pointer;
+    }
+    &_btn_follow:hover {
+      background-color: rgb(12, 131, 12);
+    }
+    &_btn_unfollow {
+      width: 100%;
+      background-color: rgb(165, 34, 34);
+      color: white;
+      border: none;
+      padding: 1.2rem 1.4rem;
+      border-radius: 5px;
+      display: inline-block;
+      cursor: pointer;
+    }
+    &_btn_unfollow:hover {
+      background-color: rgb(151, 12, 12);
+    }
+  }
+  .another-user {
+    text-align: center;
+    &-image {
+      display: inline-block;
+      width: 100%;
+
+      img {
+        width: 25%;
+        border-radius: 50%;
+      }
+      img.online {
+        border: 5px solid rgb(34, 145, 34);
+      }
+      img.offline {
+        border: 5px solid rgb(180, 34, 34);
+      }
+    }
+    &-info {
+      h3 {
+        span {
+          font-weight: 300;
+        }
+      }
+    }
+    &-posts {
+      margin-top: 20px;
+      img {
+        width: 25%;
+        display: inline-block;
+      }
+
+      &-box {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        background-color: white;
+        &-item {
+          flex-basis: 30%;
+
+          @media (max-width: 678px) {
+            flex-basis: 40%;
+          }
+          @media (max-width: 550px) {
+            flex-basis: 100%;
+          }
+          align-self: stretch;
+          border: 2px solid $color-gray;
+          border-radius: 5px;
+          margin-bottom: 20px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          &:not(:last-child) {
+            margin-left: 1rem;
+          }
+          &_header {
+            font-size: 0;
+            & img {
+              width: 100%;
+              object-fit: cover;
+              max-height: 200px;
+              border-bottom: 2px solid rgb(236, 139, 74);
+            }
+            & .video-js {
+              width: 100%;
+              object-fit: cover;
+              max-height: 200px;
+              border-bottom: 2px solid rgb(236, 139, 74);
+            }
+          }
+          &_body {
+            padding: 1rem;
+            & p {
+              text-align: justify;
+            }
+          }
+          &_footer {
+            display: flex;
+            padding: 1rem;
+            margin-top: auto;
+            align-items: center;
+            justify-content: space-between;
+            & > a {
+              display: flex;
+              align-items: center;
+              align-self: center;
+              cursor: pointer;
+            }
+
+            svg.fa-heart {
+              color: red;
+            }
+
+            svg.fa-comment {
+              color: $color-black-light;
+            }
+          }
         }
       }
     }

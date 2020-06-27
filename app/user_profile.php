@@ -172,7 +172,7 @@ global $logged_in;
 								switch (separator($post_media)) {
 									case 0:
 								?>
-										<a href="post_single.php?id=<?php echo $post_id ?>"><img src="../assets/img/<?php echo $post_media ?>" class="container-main-posts-item_header_img"></a>
+										<a href="post_single.php?id=<?php echo $post_id ?>"><img src="./images/<?php echo $post_media ?>" class="container-main-posts-item_header_img"></a>
 
 									<?php
 										break;
@@ -270,36 +270,131 @@ global $logged_in;
 				$req_status = 0;
 				
 				?>
-					<form action="includes/follow_req.php" method="POST">
-						<div class="change-info-form-submit">
-							<button class="change-info-form-submit_btn" name="follow_req">دنبال کردن+</button>
-						</div>
+					<form action="includes/follow_req.php"  class="request-box" method="POST">
+							<button class="request-box_btn_follow" name="follow_req">دنبال کردن</button>
 					</form>
 
 				<?php } elseif ($req_status == 1) { ?>
 
-					<form action="includes/follow_req.php" method="POST">
-						<div class="change-info-form-submit">
-							<button class="change-info-form-submit_btn" name="follow_req">درخواست در حال بررسی</button>
-						</div>
+					<form action="includes/follow_req.php" class="request-box" method="POST">
+							<button class="request-box_btn_pending" name="follow_req">درخواست در حال بررسی
+							</button>
 					</form>
 			<?php }
 			}
-
-
+		
 
 			?>
 
+			<div class="another-user">
+				<div class="another-user-image">
+				
+					<img src="images/user-male.jpg" class="offline" alt="user image">
+				</div>
+				<div class="another-user-info">
+					<h3>نام کاربری:<span>تست</span></h3>
+					<h3>ایمیل:<span>تست</span></h3>
+					
+				</div>
+				<div class="another-user-posts">
+					<img src="../assets/img/lock-icon.png" alt="">
+					
+					<div class="another-user-posts-box">
 
+					<?php
+
+					$query = "SELECT * FROM posts WHERE username = '$userid'";
+					$select_all_user_post = mysqli_query($conn, $query);
+					echo mysqli_error($conn);
+					while ($row = mysqli_fetch_assoc($select_all_user_post)) {
+						$post_title = $row['post_title'];
+						$post_username = $row['username'];
+						$post_tags = $row['s_tag'];
+						$post_tagsp = $row['sp_tag'];
+						$post_tage = $row['e_tag'];
+						$post_tagp = $row['p_tag'];
+						$post_content = $row['content'];
+						$post_likes = $row['likes'];
+						$post_media = $row['media'];
+						$post_id = $row['post_id'];
+						$post_comment_counter = $row['comment_counter'];
+
+						if ($post_tags == 1) {
+							$post_tags = '#علمی';
+						} else {
+							$post_tags = '';
+						}
+						if ($post_tagsp == 1) {
+							$post_tagsp = '#ورزشی';
+						} else {
+							$post_tagsp = '';
+						}
+						if ($post_tage == 1) {
+							$post_tage = '#اقتصادی';
+						} else {
+							$post_tage = '';
+						}
+						if ($post_tagp == 1) {
+							$post_tagp = '#سیاسی';
+						} else {
+							$post_tagp = '';
+						}
+
+
+
+
+					?>
+						<div class="another-user-posts-box-item">
+							<div class="another-user-posts-box-item_header">
+								<?php
+								switch (separator($post_media)) {
+									case 0:
+								?>
+										<a href="post_single.php?id=<?php echo $post_id ?>"><img src="./images/<?php echo $post_media ?>" class="another-user-posts-box-item_header_img"></a>
+
+									<?php
+										break;
+									case 1:
+									?>
+										<a href="post_single.php?id=<?php echo $post_id ?>"><video class="video-js" controls preload="auto" poster="../assets/img/login_register-background.jpg" data-setup="{}"></a>
+										<source src="../assets/video/<?php echo $post_media ?>" type="video/mp4" />
+										</video>
+
+								<?php
+										break;
+									case -1:
+										echo "The Media format not recognized";
+										break;
+								}
+								?>
+							</div>
+							<div class="another-user-posts-box-item_body">
+								<p><?php limited_echo($post_content, 200); ?></p>
+							</div>
+							<div class="another-user-posts-box-item_footer">
+								<a><i class="fas fa-comment"></i><span class="mr-1"><?php echo $post_comment_counter; ?></span></a>
+								<a><i class="fas fa-heart"></i><span class="mr-1"><?php echo $post_likes; ?></span></a>
+							</div>
+
+						</div>
+					<?php } ?>
+
+				</div>
+
+			</div>
+				</div>
+			</div>
 
 
 		<?php } ?>
 
 
-	</section>
+	</section> 	
+	<script src="../assets/js/jquery-3.4.1.min.js"></script>
 	<script src="../assets/fonts/font-awesome/all.min.js"></script>
 	<script src="../assets/videojs/video.js"></script>
 	<script src="../assets/js/user_profile.js"></script>
+	<script src="../assets/js/header.js"></script>
 </body>
 
 </html>

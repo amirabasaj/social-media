@@ -34,8 +34,37 @@ if (mysqli_num_rows($res) == 1) {
 		<a href="home.php" class="header-operation_envelope">
 			<i class="fa fa-envelope fa-3x"></i>
 		</a>
-		<a href="home.php" class="header-operation_bell">
+		<a href="#" class="header-operation_bell">
+			<span class="header-operation_bell_notif-count">100</span>
 			<i class="fa fa-bell fa-3x"></i>
+			<div class="header-operation-request-box">
+			<ul>
+			<li>
+				<img src="./images/user-male.jpg" alt="">
+				<span>username</span>
+				<div>
+				<form action="">
+				<button type="submit"><i class="fas fa-check-circle"></i></button>
+				</form>
+				<form action="">
+				<button type="submit"><i class="fas fa-times-circle"></i></button>
+				</form>
+				</div>
+			</li>
+			<li>
+				<img src="./images/user-male.jpg" alt="">
+				<span>username</span>
+				<div>
+				<form action="">
+				<button type="submit"><i class="fas fa-check-circle"></i></button>
+				</form>
+				<form action="">
+				<button type="submit"><i class="fas fa-times-circle"></i></button>
+				</form>
+				</div>
+			</li>
+			</ul>
+			</div>
 		</a>
 		<a href="home.php" class="header-operation_users">
 			<i class="fa fa-users fa-3x"></i>

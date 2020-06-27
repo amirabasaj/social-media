@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			} elseif ($new_image_size > 4097152) {
 				$_SESSION['user_profile']['add post'] = "حجم فایل دریافت شده بیش از حجم مجاز است";
 			} else {
-				move_uploaded_file($new_image_temp, '../app/images/' . $new_image_name);
+				move_uploaded_file($new_image_temp, '../images/' . $new_image_name);
 				$query = "INSERT INTO posts(post_title , username , s_tag , sp_tag , e_tag , p_tag ,content , media) VALUES ('$new_post_title' ,'$logged_in' ,'$elmi', '$varzeshi', '$eghtesadi' , '$siyasi', '$new_post_content' , '$new_image_name')";
 				$insert_post = mysqli_query($conn, $query);
 				if (!$insert_post) echo ("FAILED" . mysqli_error($conn));
