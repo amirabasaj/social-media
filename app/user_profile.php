@@ -6,6 +6,7 @@ require './auth/checkAuth_handler.php';
 require 'function.php';
 
 global $logged_in;
+global $userid;
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +32,7 @@ global $logged_in;
 	if (isset($_GET['userid'])) {
 
 		$userid = $_GET['userid'];
+		$_SESSION['userid'] = $userid;
 	}
 	?>
 
@@ -251,145 +253,171 @@ global $logged_in;
 				</div>
 			</div>
 			<?php } else {
+			$logged_in = $_SESSION['login_username'];
+			$query1 = "SELECT status FROM follow_req WHERE sender = '$logged_in' && getter= '$userid'";
+			$result1 = mysqli_query($conn, $query1);
+			$row1 = mysqli_fetch_assoc($result1);
+			// echo $row1['status'] ;
 
-			$query1 = "SELECT followed FROM Follow WHERE follower = '$logged_in' followed= '$userid'";
-			if (mysqli_query($conn, $query1)) {
-				$result1 = mysqli_query($conn, $query1);
-				$row1 = mysqli_fetch_assoc($result1); ?>
+			if ($row1['status'] == '1') {
 
 
-				<form action="includes/follow_req.php" method="POST">
+			?>
+
+
+				<form action="includes/unfollow.php" method="POST">
 					<div class="change-info-form-submit">
-						<button class="change-info-form-submit_btn" name="follow_req">آنفالو</button>
+						<button class="request-box_btn_unfollow" name="unfollow">آنفالو</button>
 					</div>
 				</form>
 
 				<?php } else {
-				$query2 = "SELECT status FROM follow_req WHERE sender ='$logged_in' getter = '$userid' ";$req_status;
-				if (!mysqli_query($conn, $query2)){
-				$req_status = 0;
-				
+				$logged_in = $_SESSION['login_username'];
+				$query2 = "SELECT status FROM follow_req WHERE sender ='$logged_in' && getter = '$userid' ";
+				$result2 = mysqli_query($conn, $query2);
+				$row2 = mysqli_fetch_assoc($result2);
+				if (!$row2) {
+
 				?>
-					<form action="includes/follow_req.php"  class="request-box" method="POST">
-							<button class="request-box_btn_follow" name="follow_req">دنبال کردن</button>
+					<form action="includes/follow_req.php" class="request-box" method="POST">
+						<button class="request-box_btn_follow" name="follow_req">دنبال کردن</button>
 					</form>
 
-				<?php } elseif ($req_status == 1) { ?>
+				<?php } else {
 
-					<form action="includes/follow_req.php" class="request-box" method="POST">
-							<button class="request-box_btn_pending" name="follow_req">درخواست در حال بررسی
-							</button>
+				?>
+
+					<form action="includes/unfollow.php" class="request-box" method="POST">
+						<button class="request-box_btn_pending" name="in_progress">درخواست در حال بررسی
+						</button>
 					</form>
 			<?php }
 			}
-		
+
 
 			?>
 
 			<div class="another-user">
 				<div class="another-user-image">
-				
-					<img src="images/user-male.jpg" class="offline" alt="user image">
-				</div>
-				<div class="another-user-info">
-					<h3>نام کاربری:<span>تست</span></h3>
-					<h3>ایمیل:<span>تست</span></h3>
-					
-				</div>
-				<div class="another-user-posts">
-					<img src="../assets/img/lock-icon.png" alt="">
-					
-					<div class="another-user-posts-box">
-
 					<?php
 
-					$query = "SELECT * FROM posts WHERE username = '$userid'";
-					$select_all_user_post = mysqli_query($conn, $query);
-					echo mysqli_error($conn);
-					while ($row = mysqli_fetch_assoc($select_all_user_post)) {
-						$post_title = $row['post_title'];
-						$post_username = $row['username'];
-						$post_tags = $row['s_tag'];
-						$post_tagsp = $row['sp_tag'];
-						$post_tage = $row['e_tag'];
-						$post_tagp = $row['p_tag'];
-						$post_content = $row['content'];
-						$post_likes = $row['likes'];
-						$post_media = $row['media'];
-						$post_id = $row['post_id'];
-						$post_comment_counter = $row['comment_counter'];
-
-						if ($post_tags == 1) {
-							$post_tags = '#علمی';
-						} else {
-							$post_tags = '';
-						}
-						if ($post_tagsp == 1) {
-							$post_tagsp = '#ورزشی';
-						} else {
-							$post_tagsp = '';
-						}
-						if ($post_tage == 1) {
-							$post_tage = '#اقتصادی';
-						} else {
-							$post_tage = '';
-						}
-						if ($post_tagp == 1) {
-							$post_tagp = '#سیاسی';
-						} else {
-							$post_tagp = '';
-						}
-
-
-
+					$query = "SELECT profile_pic FROM users WHERE username = '$userid'";
+					$other_user_pic = mysqli_query($conn, $query);
+					$other_user_pic = mysqli_fetch_row($other_user_pic);
 
 					?>
-						<div class="another-user-posts-box-item">
-							<div class="another-user-posts-box-item_header">
-								<?php
-								switch (separator($post_media)) {
-									case 0:
-								?>
-										<a href="post_single.php?id=<?php echo $post_id ?>"><img src="./images/<?php echo $post_media ?>" class="another-user-posts-box-item_header_img"></a>
+					<img src="images/<?php echo  $other_user_pic[0];  ?>" class="offline" alt="user image">
+				</div>
 
-									<?php
-										break;
-									case 1:
-									?>
-										<a href="post_single.php?id=<?php echo $post_id ?>"><video class="video-js" controls preload="auto" poster="../assets/img/login_register-background.jpg" data-setup="{}"></a>
-										<source src="../assets/video/<?php echo $post_media ?>" type="video/mp4" />
-										</video>
+				<div class="another-user-info">
+					<h3>نام کاربری:<span><?php echo $userid ?></span></h3>
+				</div>
+				<?php
+				$query = "SELECT private FROM users WHERE username = '$userid'";
+				$privacy = mysqli_query($conn, $query);
+				$privacy = mysqli_fetch_row($privacy);
+				$query = "SELECT status FROM follow_req WHERE sender = '$logged_in' && getter = '$userid'";
+				$following = mysqli_query($conn, $query);
+				$following = mysqli_fetch_row($following);
+				if ($privacy[0] == 1 && $following[0] == 0) {
+				?>
+					<div class="another-user-posts">
+						<img src="../assets/img/lock-icon.png" alt="">
 
-								<?php
-										break;
-									case -1:
-										echo "The Media format not recognized";
-										break;
+					<?php } else { ?>
+
+						<div class="another-user-posts-box">
+
+							<?php
+
+							$query = "SELECT * FROM posts WHERE username = '$userid'";
+							$select_all_user_post = mysqli_query($conn, $query);
+							echo mysqli_error($conn);
+							while ($row = mysqli_fetch_assoc($select_all_user_post)) {
+								$post_title = $row['post_title'];
+								$post_username = $row['username'];
+								$post_tags = $row['s_tag'];
+								$post_tagsp = $row['sp_tag'];
+								$post_tage = $row['e_tag'];
+								$post_tagp = $row['p_tag'];
+								$post_content = $row['content'];
+								$post_likes = $row['likes'];
+								$post_media = $row['media'];
+								$post_id = $row['post_id'];
+								$post_comment_counter = $row['comment_counter'];
+
+								if ($post_tags == 1) {
+									$post_tags = '#علمی';
+								} else {
+									$post_tags = '';
 								}
-								?>
-							</div>
-							<div class="another-user-posts-box-item_body">
-								<p><?php limited_echo($post_content, 200); ?></p>
-							</div>
-							<div class="another-user-posts-box-item_footer">
-								<a><i class="fas fa-comment"></i><span class="mr-1"><?php echo $post_comment_counter; ?></span></a>
-								<a><i class="fas fa-heart"></i><span class="mr-1"><?php echo $post_likes; ?></span></a>
-							</div>
+								if ($post_tagsp == 1) {
+									$post_tagsp = '#ورزشی';
+								} else {
+									$post_tagsp = '';
+								}
+								if ($post_tage == 1) {
+									$post_tage = '#اقتصادی';
+								} else {
+									$post_tage = '';
+								}
+								if ($post_tagp == 1) {
+									$post_tagp = '#سیاسی';
+								} else {
+									$post_tagp = '';
+								}
+
+
+
+
+							?>
+								<div class="another-user-posts-box-item">
+									<div class="another-user-posts-box-item_header">
+										<?php
+										switch (separator($post_media)) {
+											case 0:
+										?>
+												<a href="post_single.php?id=<?php echo $post_id ?>"><img src="./images/<?php echo $post_media ?>" class="another-user-posts-box-item_header_img"></a>
+
+											<?php
+												break;
+											case 1:
+											?>
+												<a href="post_single.php?id=<?php echo $post_id ?>"><video class="video-js" controls preload="auto" poster="../assets/img/login_register-background.jpg" data-setup="{}"></a>
+												<source src="../assets/video/<?php echo $post_media ?>" type="video/mp4" />
+												</video>
+
+										<?php
+												break;
+											case -1:
+												echo "The Media format not recognized";
+												break;
+										}
+										?>
+									</div>
+									<div class="another-user-posts-box-item_body">
+										<p><?php limited_echo($post_content, 200); ?></p>
+									</div>
+									<div class="another-user-posts-box-item_footer">
+										<a><i class="fas fa-comment"></i><span class="mr-1"><?php echo $post_comment_counter; ?></span></a>
+										<a><i class="fas fa-heart"></i><span class="mr-1"><?php echo $post_likes; ?></span></a>
+									</div>
+
+								</div>
+							<?php } ?>
 
 						</div>
-					<?php } ?>
 
-				</div>
-
+					</div>
 			</div>
-				</div>
 			</div>
 
 
-		<?php } ?>
+	<?php }
+			} ?>
 
 
-	</section> 	
+	</section>
 	<script src="../assets/js/jquery-3.4.1.min.js"></script>
 	<script src="../assets/fonts/font-awesome/all.min.js"></script>
 	<script src="../assets/videojs/video.js"></script>

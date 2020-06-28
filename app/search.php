@@ -30,6 +30,7 @@ require './auth/checkAuth_handler.php';
 
 <body>
 	<?php
+	
 
 	require 'partialViews/header.php';
 

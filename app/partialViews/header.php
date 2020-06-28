@@ -15,6 +15,7 @@ if (mysqli_num_rows($res) == 1) {
 
 	<div class="header-imgbox">
 		<img src="../app/images/<?php echo $userPic ?>">
+		<span><?php echo $_SESSION['login_username'] ?></span>
 	</div>
 	<form class="header-searchbox">
 		<div class="header-searchbox-content">
@@ -34,36 +35,51 @@ if (mysqli_num_rows($res) == 1) {
 		<a href="home.php" class="header-operation_envelope">
 			<i class="fa fa-envelope fa-3x"></i>
 		</a>
+		<?php
+		$logged_in = $_SESSION['login_username'];
+		$userid = $_SESSION['userid'];
+		$query = "SELECT * FROM follow_req WHERE getter = '$logged_in' && status = '0'";
+		$follow_req = mysqli_query($conn, $query); ?>
 		<a href="#" class="header-operation_bell">
-			<span class="header-operation_bell_notif-count">100</span>
+		<?php if(mysqli_num_rows($follow_req)>=1){?>
+			<span class="header-operation_bell_notif-count"><?php  echo mysqli_num_rows($follow_req) ?></span>
+			<?php } ?>
 			<i class="fa fa-bell fa-3x"></i>
 			<div class="header-operation-request-box">
-			<ul>
-			<li>
-				<img src="./images/user-male.jpg" alt="">
-				<span>username</span>
-				<div>
-				<form action="">
-				<button type="submit"><i class="fas fa-check-circle"></i></button>
-				</form>
-				<form action="">
-				<button type="submit"><i class="fas fa-times-circle"></i></button>
-				</form>
-				</div>
-			</li>
-			<li>
-				<img src="./images/user-male.jpg" alt="">
-				<span>username</span>
-				<div>
-				<form action="">
-				<button type="submit"><i class="fas fa-check-circle"></i></button>
-				</form>
-				<form action="">
-				<button type="submit"><i class="fas fa-times-circle"></i></button>
-				</form>
-				</div>
-			</li>
-			</ul>
+				<ul>
+
+					<?php
+					$logged_in = $_SESSION['login_username'];
+					$userid = $_SESSION['userid'];
+					$query = "SELECT * FROM follow_req WHERE getter = '$logged_in'";
+					$follow_req = mysqli_query($conn, $query);
+					for ($i = 0; $row = mysqli_fetch_assoc($follow_req); $i++) {
+
+						$sender = $row['sender'];
+						$status = $row['status'];
+						if ($status == 0) {
+							$query = "SELECT profile_pic FROM users WHERE username = '$sender'";
+							$pic = mysqli_query($conn, $query);
+							$pic = mysqli_fetch_row($pic);
+
+					?>
+							<li>
+								<img src="./images/<?php echo $pic[0]; ?>" alt="">
+								<span><?php echo $sender ?></span>
+								<div>
+									<form action="includes/accept_decline.php" method="POST">
+										<input type="text" name="sender" value="<?php echo $sender ?>" style="display: none">
+										<button type="submit" name="accept"><i class="fas fa-check-circle"></i></button>
+									</form>
+									<form action="includes/accept_decline.php" method="POST">
+										<input type="text" name="sender" value="<?php echo $sender ?>" style="display: none">
+										<button type="submit" name="decline"><i class="fas fa-times-circle"></i></button>
+									</form>
+								</div>
+							</li>
+					<?php }
+					} ?>
+				</ul>
 			</div>
 		</a>
 		<a href="home.php" class="header-operation_users">

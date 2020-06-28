@@ -116,7 +116,7 @@ require './auth/checkAuth_handler.php';
 							</a>
 
 
-							<a href="post_single?" class="container-main-posts-item_footer_view-btn">مشاهده کامل</a>
+							<a href="post_single.php?id=<?php echo $post_id ?>" class="container-main-posts-item_footer_view-btn">مشاهده کامل</a>
 						</div>
 					</div>
 
