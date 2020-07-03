@@ -1,0 +1,20 @@
+{
+  "name": "socialmedia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "login_register": "node-sass ./assets/sass/login_register.scss ./assets/css/login_register.css -w",
+    "home": "node-sass ./assets/sass/home.scss ./assets/css/home.css -w",
+    "user_profile": "node-sass ./assets/sass/user_profile.scss ./assets/css/user_profile.css -w",
+    "post_single": "node-sass ./assets/sass/post_single.scss ./assets/css/post_single.css -w"
+  },
+  "author": "amirabasajoudani",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^4.13.1"
+  },
+  "dependencies": {
+    "jquery": "^3.4.1"
+  }
+}
