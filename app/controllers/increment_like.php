@@ -3,6 +3,7 @@
 session_start();
 
 require '../../database/database.php';
+require '../auth/checkAuth_handler.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 

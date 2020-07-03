@@ -189,7 +189,37 @@ body {
               .header-operation_bell .header-operation-request-box ul li div form button .fa-times-circle {
                 color: red; }
   .header-searchbox {
-    flex-basis: 30%; }
+    flex-basis: 30%;
+    position: relative; }
+    .header-searchbox-result {
+      position: absolute;
+      z-index: 2;
+      direction: ltr;
+      top: 110%;
+      left: 0px;
+      width: 100%;
+      background: black;
+      color: white;
+      border-radius: 5px;
+      font-size: 1.2rem; }
+      .header-searchbox-result ul {
+        list-style: none; }
+        .header-searchbox-result ul li {
+          padding: 5px; }
+          .header-searchbox-result ul li a {
+            text-decoration: none;
+            display: flex; }
+            .header-searchbox-result ul li a img {
+              display: inline-block;
+              border-radius: 50%;
+              width: 32px;
+              height: 32px;
+              border: 2px solid white;
+              margin-right: 10px; }
+            .header-searchbox-result ul li a span {
+              align-self: center; }
+        .header-searchbox-result ul li:not(:last-child) {
+          border-bottom: 2px solid gray; }
     .header-searchbox-content {
       position: relative;
       width: 100%; }
@@ -313,6 +343,8 @@ body {
           border-bottom: 2px solid #ec8b4a; }
         .container-main-posts-item_body {
           padding: 1rem; }
+          .container-main-posts-item_body a {
+            text-decoration: none; }
           .container-main-posts-item_body p {
             text-align: justify; }
         .container-main-posts-item_footer {

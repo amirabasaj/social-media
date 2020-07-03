@@ -20,6 +20,8 @@ if (isset($_POST['accept'])) {
 	if (!$accept) {
 		die(mysqli_error($conn));
 	}
+	
+	header("Location:$http://$_SERVER[HTTP_HOST]/social-media/app/home.php");
 }
 
 if (isset($_POST['decline'])) {
@@ -31,4 +33,6 @@ if (isset($_POST['decline'])) {
 	if (!$accept) {
 		die(mysqli_error($conn));
 	}
+	
+	header("Location:$http://$_SERVER[HTTP_HOST]/social-media/app/home.php");
 }
