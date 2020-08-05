@@ -12,13 +12,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$data = json_decode($json_str, true);
 	if (!empty($data['post_id'])) {
 
+		$logged_in =  $_SESSION['login_username'];
 		$selected_post_id = $data['post_id'];
-		$query = "UPDATE posts SET likes = likes + 1	 WHERE post_id ={$selected_post_id} ";
-		$result = mysqli_query($conn, $query);
-		if ($result) {
-			$jsonResponse = array('success' => 'YES');
-		} else {
-			$jsonResponse = array('success' => 'NO', 'error' => 'خطا در بر قراری ارتباط با سرور');
+		$queryLikeSelect="SELECT * FROM likes WHERE username='$logged_in' AND postId='$selected_post_id'";
+		$resultQueryLikeSelect=mysqli_query($conn,$queryLikeSelect);
+		
+		if(mysqli_num_rows($resultQueryLikeSelect)>0){
+			$queryUpdatePostLikes = "UPDATE posts SET likes = likes -1	 WHERE post_id ='$selected_post_id'";
+			$queryLikeDelete="DELETE FROM likes WHERE username='$logged_in' AND postId='$selected_post_id'";
+			$resultQueryUpdatePostLikes=mysqli_query($conn,$queryUpdatePostLikes);
+			$resultQueryLikeDelete=mysqli_query($conn,$queryLikeDelete);
+			if ($resultQueryLikeDelete) {
+				$jsonResponse = array('success' => 'YES','color'=>'white');
+			} else {
+				$jsonResponse = array('success' => 'NO', 'error' => 'خطا در بر قراری ارتباط با سرور');
+			}
+		}
+		else{
+			$queryUpdatePostLikes = "UPDATE posts SET likes = likes +1	 WHERE post_id ='$selected_post_id'";
+			$queryLikeInsert="INSERT INTO likes (username,postId) VALUES('$logged_in','$selected_post_id')"; 
+			$resultQueryUpdatePostLikes=mysqli_query($conn,$queryUpdatePostLikes);
+			$resultQueryLikeInsert=mysqli_query($conn,$queryLikeInsert);
+			if ($resultQueryLikeInsert) {
+				$jsonResponse = array('success' => 'YES','color'=>'red');
+			} else {
+				$jsonResponse = array('success' => 'NO', 'error' => 'خطا در بر قراری ارتباط با سرور');
+			}
 		}
 		echo json_encode($jsonResponse);
 	}

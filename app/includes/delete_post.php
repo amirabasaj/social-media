@@ -14,11 +14,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		// if (isset($_POST['post__id'])) {
 		$delete_id = $_POST['wanted_id'];
 
-		$query = "DELETE FROM posts WHERE post_id ='$delete_id' AND username = '$logged_in' ";
-		$delete_post = mysqli_query($conn, $query);
-		echo mysqli_error($conn);
-		// $_GET['delete'] = '';
-		// }
+		$queryDeletePost = "DELETE FROM posts WHERE post_id ='$delete_id' AND username = '$logged_in' ";
+		$queryDeletePostLikes = "DELETE FROM likes WHERE postId ='$delete_id'";
+		$queryDeleteComments = "DELETE FROM comments WHERE post_id ='$delete_id'";
+		$deletepPost = mysqli_query($conn, $queryDeletePost);
+		if($deletepPost){
+			$deletePostLikes = mysqli_query($conn, $queryDeletePostLikes);
+			$deletePostComments = mysqli_query($conn, $queryDeleteComments);	
+		}
 	}
 	$userid = $_SESSION['login_username'] ;
 	header("Location:$http://$_SERVER[HTTP_HOST]/social-media/app/user_profile.php?userid=$userid");

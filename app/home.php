@@ -83,7 +83,7 @@ require './auth/checkAuth_handler.php';
 							switch (separator($post_media)) {
 								case 0:
 							?>
-            <img src="../assets/img/<?php echo $post_media ?>" class="container-main-posts-item_header_img">
+            <img src="./images/<?php echo $post_media ?>" class="container-main-posts-item_header_img">
 
             <?php
 									break;
@@ -91,7 +91,7 @@ require './auth/checkAuth_handler.php';
 								?>
             <video class="video-js" controls preload="auto" poster="../assets/img/login_register-background.jpg"
               data-setup="{}">
-              <source src="../assets/video/<?php echo $post_media ?>" type="video/mp4" />
+              <source src="./images/<?php echo $post_media ?>" type="video/mp4" />
             </video>
 
             <?php

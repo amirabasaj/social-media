@@ -2,7 +2,9 @@
   font-family: B-nazanin;
   src: url("../fonts/B-Nazanin.ttf"); }
 
-*, *::after, *::before {
+*,
+*::after,
+*::before {
   padding: 0;
   margin: 0;
   color: inherit;
@@ -13,11 +15,97 @@
 *:focus {
   outline: none; }
 
-html, body {
+html,
+body {
   box-sizing: border-box;
   font-size: 62.5%;
-  font-family: B-nazanin,Arial, Helvetica, sans-serif;
+  font-family: B-nazanin, Arial, Helvetica, sans-serif;
   direction: rtl; }
+
+.primary-input {
+  border: none;
+  width: 100%;
+  border-radius: 5px;
+  background-color: whitesmoke;
+  padding: 0.4rem 0.5rem; }
+
+.mt-1 {
+  margin-top: 0.5rem; }
+
+.mt-2 {
+  margin-top: 1rem; }
+
+.mt-3 {
+  margin-top: 1.5rem; }
+
+.mt-4 {
+  margin-top: 2rem; }
+
+.mt-5 {
+  margin-top: 3rem; }
+
+.mr-1 {
+  margin-right: 0.5rem; }
+
+.mr-2 {
+  margin-right: 1rem; }
+
+.mr-3 {
+  margin-right: 1.5rem; }
+
+.mr-4 {
+  margin-right: 2rem; }
+
+.mr-5 {
+  margin-right: 3rem; }
+
+.ml-1 {
+  margin-left: 0.5rem; }
+
+.ml-2 {
+  margin-left: 1rem; }
+
+.ml-3 {
+  margin-left: 1.5rem; }
+
+.ml-4 {
+  margin-left: 2rem; }
+
+.ml-5 {
+  margin-left: 3rem; }
+
+.mb-1 {
+  margin-bottom: 0.5rem; }
+
+.mb-2 {
+  margin-bottom: 1rem; }
+
+.mb-3 {
+  margin-bottom: 1.5rem; }
+
+.mb-4 {
+  margin-bottom: 2rem; }
+
+.mb-5 {
+  margin-bottom: 3rem; }
+
+.m-1 {
+  margin: 0.5rem; }
+
+.m-2 {
+  margin: 1rem; }
+
+.m-3 {
+  margin: 1.5rem; }
+
+.m-4 {
+  margin: 2rem; }
+
+.m-5 {
+  margin: 3rem; }
+
+.text-align-center {
+  text-align: center; }
 
 .primary__checkbox {
   display: flex;
@@ -130,14 +218,16 @@ html, body {
         font-size: 2rem;
         font-weight: bold;
         text-shadow: #2c82bb 3px 3px 3px; }
-    .loginRegister-container-box_loginForm, .loginRegister-container-box_registerForm {
+    .loginRegister-container-box_loginForm, .loginRegister-container-box_registerForm, .loginRegister-container-box_forgotPasswordForm {
       padding: 0rem 0.5rem;
       overflow: hidden; }
       .loginRegister-container-box_loginForm input[type='text'],
       .loginRegister-container-box_loginForm input[type='password'],
       .loginRegister-container-box_loginForm input[type='email'], .loginRegister-container-box_registerForm input[type='text'],
       .loginRegister-container-box_registerForm input[type='password'],
-      .loginRegister-container-box_registerForm input[type='email'] {
+      .loginRegister-container-box_registerForm input[type='email'], .loginRegister-container-box_forgotPasswordForm input[type='text'],
+      .loginRegister-container-box_forgotPasswordForm input[type='password'],
+      .loginRegister-container-box_forgotPasswordForm input[type='email'] {
         width: 100%;
         display: block;
         border: none;
@@ -152,15 +242,19 @@ html, body {
         .loginRegister-container-box_loginForm input[type='password']:hover,
         .loginRegister-container-box_loginForm input[type='email']:hover, .loginRegister-container-box_registerForm input[type='text']:hover,
         .loginRegister-container-box_registerForm input[type='password']:hover,
-        .loginRegister-container-box_registerForm input[type='email']:hover {
+        .loginRegister-container-box_registerForm input[type='email']:hover, .loginRegister-container-box_forgotPasswordForm input[type='text']:hover,
+        .loginRegister-container-box_forgotPasswordForm input[type='password']:hover,
+        .loginRegister-container-box_forgotPasswordForm input[type='email']:hover {
           border-color: #3498db; }
         .loginRegister-container-box_loginForm input[type='text']::placeholder,
         .loginRegister-container-box_loginForm input[type='password']::placeholder,
         .loginRegister-container-box_loginForm input[type='email']::placeholder, .loginRegister-container-box_registerForm input[type='text']::placeholder,
         .loginRegister-container-box_registerForm input[type='password']::placeholder,
-        .loginRegister-container-box_registerForm input[type='email']::placeholder {
+        .loginRegister-container-box_registerForm input[type='email']::placeholder, .loginRegister-container-box_forgotPasswordForm input[type='text']::placeholder,
+        .loginRegister-container-box_forgotPasswordForm input[type='password']::placeholder,
+        .loginRegister-container-box_forgotPasswordForm input[type='email']::placeholder {
           font-family: B-nazanin; }
-      .loginRegister-container-box_loginForm input[type='submit'], .loginRegister-container-box_registerForm input[type='submit'] {
+      .loginRegister-container-box_loginForm input[type='submit'], .loginRegister-container-box_registerForm input[type='submit'], .loginRegister-container-box_forgotPasswordForm input[type='submit'] {
         display: block;
         background-color: #3498db;
         border: none;
@@ -174,7 +268,7 @@ html, body {
         width: 100%;
         border-radius: 5px;
         color: white; }
-        .loginRegister-container-box_loginForm input[type='submit']:hover, .loginRegister-container-box_registerForm input[type='submit']:hover {
+        .loginRegister-container-box_loginForm input[type='submit']:hover, .loginRegister-container-box_registerForm input[type='submit']:hover, .loginRegister-container-box_forgotPasswordForm input[type='submit']:hover {
           transform: scale(1.01); }
     .loginRegister-container-box_loginForm {
       display: none; }
@@ -188,14 +282,35 @@ html, body {
         background-color: #eebaba; }
         .loginRegister-container-box_loginForm_errorBox--active {
           visibility: visible; }
-      .loginRegister-container-box_loginForm_registerLink {
+      .loginRegister-container-box_loginForm_registerLink, .loginRegister-container-box_loginForm_forgotPasswordLink {
         display: block;
         color: #3498db;
         cursor: pointer;
         text-align: center;
         font-weight: bold;
         transition: transform 0.1s linear; }
-        .loginRegister-container-box_loginForm_registerLink:hover {
+        .loginRegister-container-box_loginForm_registerLink:hover, .loginRegister-container-box_loginForm_forgotPasswordLink:hover {
+          transform: scale(1.1); }
+    .loginRegister-container-box_forgotPasswordForm {
+      display: none; }
+      .loginRegister-container-box_forgotPasswordForm_errorBox {
+        border-radius: 5px;
+        padding: 1rem 0.5rem;
+        font-size: 1.6rem;
+        visibility: hidden;
+        color: #2e2e2e;
+        margin: 1rem 0;
+        background-color: #eebaba; }
+        .loginRegister-container-box_forgotPasswordForm_errorBox--active {
+          visibility: visible; }
+      .loginRegister-container-box_forgotPasswordForm_loginLink {
+        display: block;
+        color: #3498db;
+        cursor: pointer;
+        text-align: center;
+        font-weight: bold;
+        transition: transform 0.1s linear; }
+        .loginRegister-container-box_forgotPasswordForm_loginLink:hover {
           transform: scale(1.1); }
     .loginRegister-container-box_registerForm {
       display: block; }
