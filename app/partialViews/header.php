@@ -71,11 +71,11 @@ if (mysqli_num_rows($res) == 1) {
             <img src="./images/<?php echo $pic[0]; ?>" alt="">
             <span><?php echo $sender ?></span>
             <div>
-              <form action="includes/accept_decline.php" method="POST">
+              <form action="controllers/accept_decline.php" method="POST">
                 <input type="text" name="sender" value="<?php echo $sender ?>" style="display: none">
                 <button type="submit" name="accept"><i class="fas fa-check-circle"></i></button>
               </form>
-              <form action="includes/accept_decline.php" method="POST">
+              <form action="controllers/accept_decline.php" method="POST">
                 <input type="text" name="sender" value="<?php echo $sender ?>" style="display: none">
                 <button type="submit" name="decline"><i class="fas fa-times-circle"></i></button>
               </form>
@@ -85,9 +85,6 @@ if (mysqli_num_rows($res) == 1) {
 					} ?>
         </ul>
       </div>
-    </a>
-    <a href="home.php" class="header-operation_users">
-      <i class="fa fa-users fa-3x"></i>
     </a>
     <a href="./logout.php" class="header-operation_signout">
       <i class="fas fa-sign-out-alt fa-3x"></i>

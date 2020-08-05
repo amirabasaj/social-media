@@ -118,7 +118,7 @@ require './auth/checkAuth_handler.php';
       </div>
       <div class="container-post-item-addcomment">
         <h4 class="mb-3 mt-2">کامنت بذارید:</h4>
-        <form action="includes/add_comment.php" method="POST">
+        <form action="controllers/add_comment.php" method="POST">
           <input style="display: none" name="clicked_post" type="text" value=<?php echo $clicked_post ?>>
           <textarea name="comment" rows="10">متن کامنت را وارد کنید...</textarea>
           <div class="container-post-item-addcomment_btn">
