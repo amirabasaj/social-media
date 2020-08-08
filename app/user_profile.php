@@ -281,13 +281,10 @@ global $userid;
         <h3>نام کاربری:<span><?php echo $userid ?></span></h3>
       </div>
       <?php
-				$query = "SELECT private FROM users WHERE username = '$userid'";
-				$privacy = mysqli_query($conn, $query);
-				$privacy = mysqli_fetch_row($privacy);
 				$query = "SELECT status FROM follow_req WHERE sender = '$logged_in' && getter = '$userid'";
 				$following = mysqli_query($conn, $query);
 				$following = mysqli_fetch_row($following);
-				if ($privacy[0] == 1 && $following[0] == 0) {
+				if ($following[0] == 0) {
 				?>
       <div class="another-user-posts">
         <img src="../assets/img/lock-icon.png" alt="">
