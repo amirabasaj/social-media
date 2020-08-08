@@ -3,7 +3,7 @@
 session_start();
 require '../database/database.php';
 require './auth/checkAuth_handler.php';
-require 'function.php';
+require './controllers/function.php';
 
 global $logged_in;
 global $userid;

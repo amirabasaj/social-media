@@ -1,26 +1,5 @@
 <?php
 
-global $wanted_author;
-global $wanted_title;
-global $wanted_tags;
-global $wanted_tagsp;
-global $wanted_tage;
-global $wanted_tagp;
-global $flag;
-
-function confirmQuery($result)
-{
-	global $conn;
-	if ($result) {
-		die("Query Failed" . mysqli_error($conn));
-	}
-}
-
-
-
-
-
-
 function limited_echo($x, $length)
 {
 	if (strlen($x) <= $length) {

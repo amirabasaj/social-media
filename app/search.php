@@ -12,7 +12,7 @@ global $flag;
 require '../database/database.php';
 require './auth/checkAuth_handler.php';
 ?>
-<?php include "function.php" ?>
+<?php include "./controllers/function.php" ?>
 
 <!DOCTYPE html>
 <html lang="en">
